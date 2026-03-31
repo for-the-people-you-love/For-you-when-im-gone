@@ -76,34 +76,19 @@
 
     .book-open {
       width: 100%;
-      max-width: 950px;
-      background: #ead7bc;
+      max-width: 460px;
+      background: #f7ead7;
+      color: #4a2d1a;
       border-radius: 18px;
       box-shadow: 0 20px 50px rgba(0,0,0,0.45);
       overflow: hidden;
       border: 2px solid #c4a06b;
     }
 
-    .book-pages {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-    }
-
     .page {
-      min-height: 620px;
-      padding: 30px;
+      padding: 28px;
+      min-height: 580px;
       box-sizing: border-box;
-    }
-
-    .left-page {
-      background: #f3e6d2;
-      border-right: 1px solid #d2b996;
-      color: #5a3a22;
-    }
-
-    .right-page {
-      background: #fbf4e8;
-      color: #4a2d1a;
       position: relative;
     }
 
@@ -115,8 +100,7 @@
       margin-bottom: 14px;
     }
 
-    .left-page h2,
-    .right-page h2 {
+    h1, h2 {
       margin-top: 0;
     }
 
@@ -142,33 +126,36 @@
       font-size: 20px;
       line-height: 1.7;
       min-height: 220px;
+      margin-top: 20px;
     }
 
-    .message {
+    .page-panel {
       display: none;
     }
 
-    .message.active {
+    .page-panel.active {
       display: block;
     }
 
-    .start-message {
-      display: block;
+    .nav-buttons {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 24px;
     }
 
-    @media (max-width: 800px) {
-      .book-pages {
-        grid-template-columns: 1fr;
-      }
+    .nav-buttons button {
+      padding: 12px 18px;
+      font-size: 16px;
+      border: none;
+      border-radius: 12px;
+      background: #7b4e2f;
+      color: white;
+      cursor: pointer;
+    }
 
-      .left-page {
-        border-right: none;
-        border-bottom: 1px solid #d2b996;
-      }
-
-      .page {
-        min-height: auto;
-      }
+    .nav-buttons button:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
     }
   </style>
 </head>
@@ -181,42 +168,38 @@
   </div>
 
   <div id="book" class="book-open hidden">
-    <div class="book-pages">
-      <div class="page left-page">
-        <div class="page-kicker">Choose a page</div>
+    <div class="page">
+
+      <div id="panel1" class="page-panel active">
+        <div class="page-kicker">Page 1</div>
         <h2>Open When You Need Me</h2>
+        <p>Choose what you need right now.</p>
+
         <button class="menu-button" onclick="showMessage('love')">❤️ When you need love</button>
         <button class="menu-button" onclick="showMessage('strength')">💪 When you need strength</button>
         <button class="menu-button" onclick="showMessage('miss')">😢 When you miss me</button>
         <button class="menu-button" onclick="showMessage('smile')">😊 When you need a smile</button>
-      </div>
 
-      <div class="page right-page">
-        <div class="page-kicker">Message page</div>
-        <h2>Your page</h2>
-
-        <div class="message-box">
-          <div id="start" class="start-message">
-            Tap one of the pages on the left to open a message.
-          </div>
-
-          <div id="love" class="message">
-            I love you more than words can ever explain. That never changes.
-          </div>
-
-          <div id="strength" class="message">
-            You are stronger than you know, and I always believed in you.
-          </div>
-
-          <div id="miss" class="message">
-            Even when you miss me, remember that love does not leave. I am with you in that.
-          </div>
-
-          <div id="smile" class="message">
-            Think of one of our good moments and smile for me. I would want that.
-          </div>
+        <div class="nav-buttons">
+          <button disabled>← Back</button>
+          <button onclick="goToPanel(2)">Next →</button>
         </div>
       </div>
+
+      <div id="panel2" class="page-panel">
+        <div class="page-kicker">Page 2</div>
+        <h2>Your Message Page</h2>
+
+        <div class="message-box" id="messageBox">
+          Tap one of the message buttons on Page 1 first.
+        </div>
+
+        <div class="nav-buttons">
+          <button onclick="goToPanel(1)">← Back</button>
+          <button disabled>Next →</button>
+        </div>
+      </div>
+
     </div>
   </div>
 
@@ -226,11 +209,27 @@
       document.getElementById("book").classList.remove("hidden");
     }
 
+    function goToPanel(panelNumber) {
+      document.querySelectorAll(".page-panel").forEach(panel => {
+        panel.classList.remove("active");
+      });
+      document.getElementById("panel" + panelNumber).classList.add("active");
+    }
+
     function showMessage(type) {
-      document.getElementById("start").style.display = "none";
-      const messages = document.querySelectorAll(".message");
-      messages.forEach(msg => msg.classList.remove("active"));
-      document.getElementById(type).classList.add("active");
+      const box = document.getElementById("messageBox");
+
+      if (type === "love") {
+        box.innerHTML = "I love you more than words can ever explain. That never changes.";
+      } else if (type === "strength") {
+        box.innerHTML = "You are stronger than you know, and I always believed in you.";
+      } else if (type === "miss") {
+        box.innerHTML = "Even when you miss me, remember that love does not leave. I am with you in that.";
+      } else if (type === "smile") {
+        box.innerHTML = "Think of one of our good moments and smile for me. I would want that.";
+      }
+
+      goToPanel(2);
     }
   </script>
 
