@@ -486,7 +486,7 @@
         document.getElementById("page" + i).classList.add("show")
       }
 
-      document.getElementById("page" + pageNumber).classList.add("active");
+      document.getElementById("page" + pageNumber).classList.remove("show")
 
       const leftDisabled = pageNumber === 0;
       const rightDisabled = pageNumber === totalPages - 1;
