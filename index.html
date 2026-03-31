@@ -10,11 +10,12 @@
       font-family: Georgia, serif;
       background: linear-gradient(to bottom, #2b1d14, #120d09);
       color: white;
+      min-height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
-      min-height: 100vh;
-      overflow: hidden;
+      padding: 20px;
+      box-sizing: border-box;
     }
 
     .hidden {
@@ -49,14 +50,14 @@
       border-radius: 14px 0 0 14px;
     }
 
-    .title {
+    .cover-title {
       font-size: 34px;
       color: #f0d18a;
       line-height: 1.2;
       margin-bottom: 20px;
     }
 
-    .subtitle {
+    .cover-subtitle {
       color: #f7e7c5;
       font-size: 16px;
       max-width: 220px;
@@ -73,97 +74,163 @@
       text-transform: uppercase;
     }
 
-    .inside {
-      max-width: 700px;
-      width: 90%;
-      background: #f7ead7;
-      color: #4a2d1a;
+    .book-open {
+      width: 100%;
+      max-width: 950px;
+      background: #ead7bc;
       border-radius: 18px;
-      padding: 30px;
-      box-shadow: 0 20px 50px rgba(0,0,0,0.4);
-      text-align: center;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.45);
+      overflow: hidden;
+      border: 2px solid #c4a06b;
     }
 
-    h1 {
+    .book-pages {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .page {
+      min-height: 620px;
+      padding: 30px;
+      box-sizing: border-box;
+    }
+
+    .left-page {
+      background: #f3e6d2;
+      border-right: 1px solid #d2b996;
+      color: #5a3a22;
+    }
+
+    .right-page {
+      background: #fbf4e8;
+      color: #4a2d1a;
+      position: relative;
+    }
+
+    .page-kicker {
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #a06d35;
+      margin-bottom: 14px;
+    }
+
+    .left-page h2,
+    .right-page h2 {
       margin-top: 0;
     }
 
-    .buttons {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 12px;
-      margin-top: 25px;
-    }
-
-    button {
-      padding: 14px 20px;
+    .menu-button {
+      display: block;
+      width: 100%;
+      padding: 14px 16px;
+      margin-bottom: 12px;
       font-size: 16px;
       border: none;
       border-radius: 12px;
       background: #9b5d3a;
       color: white;
       cursor: pointer;
+      text-align: left;
+    }
+
+    .message-box {
+      background: white;
+      border-radius: 14px;
+      padding: 22px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+      font-size: 20px;
+      line-height: 1.7;
+      min-height: 220px;
     }
 
     .message {
       display: none;
-      margin-top: 25px;
-      padding: 20px;
-      border-radius: 14px;
-      background: white;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-      font-size: 20px;
-      line-height: 1.7;
+    }
+
+    .message.active {
+      display: block;
+    }
+
+    .start-message {
+      display: block;
+    }
+
+    @media (max-width: 800px) {
+      .book-pages {
+        grid-template-columns: 1fr;
+      }
+
+      .left-page {
+        border-right: none;
+        border-bottom: 1px solid #d2b996;
+      }
+
+      .page {
+        min-height: auto;
+      }
     }
   </style>
 </head>
 <body>
 
   <div id="cover" class="book-cover" onclick="openBook()">
-    <div class="title">For You When I'm Gone</div>
-    <div class="subtitle">Everything I wanted you to remember, know, and feel.</div>
+    <div class="cover-title">For You When I'm Gone</div>
+    <div class="cover-subtitle">Everything I wanted you to remember, know, and feel.</div>
     <div class="tap-note">Tap to open</div>
   </div>
 
-  <div id="inside" class="inside hidden">
-    <h1>Open When You Need Me ❤️</h1>
-    <p>Choose what you need right now.</p>
+  <div id="book" class="book-open hidden">
+    <div class="book-pages">
+      <div class="page left-page">
+        <div class="page-kicker">Choose a page</div>
+        <h2>Open When You Need Me</h2>
+        <button class="menu-button" onclick="showMessage('love')">❤️ When you need love</button>
+        <button class="menu-button" onclick="showMessage('strength')">💪 When you need strength</button>
+        <button class="menu-button" onclick="showMessage('miss')">😢 When you miss me</button>
+        <button class="menu-button" onclick="showMessage('smile')">😊 When you need a smile</button>
+      </div>
 
-    <div class="buttons">
-      <button onclick="showMessage('love')">❤️ When you need love</button>
-      <button onclick="showMessage('strength')">💪 When you need strength</button>
-      <button onclick="showMessage('miss')">😢 When you miss me</button>
-      <button onclick="showMessage('smile')">😊 When you need a smile</button>
-    </div>
+      <div class="page right-page">
+        <div class="page-kicker">Message page</div>
+        <h2>Your page</h2>
 
-    <div id="love" class="message">
-      I love you more than words can ever explain. That never changes.
-    </div>
+        <div class="message-box">
+          <div id="start" class="start-message">
+            Tap one of the pages on the left to open a message.
+          </div>
 
-    <div id="strength" class="message">
-      You are stronger than you know, and I always believed in you.
-    </div>
+          <div id="love" class="message">
+            I love you more than words can ever explain. That never changes.
+          </div>
 
-    <div id="miss" class="message">
-      Even when you miss me, remember that love does not leave. I am with you in that.
-    </div>
+          <div id="strength" class="message">
+            You are stronger than you know, and I always believed in you.
+          </div>
 
-    <div id="smile" class="message">
-      Think of one of our good moments and smile for me. I would want that.
+          <div id="miss" class="message">
+            Even when you miss me, remember that love does not leave. I am with you in that.
+          </div>
+
+          <div id="smile" class="message">
+            Think of one of our good moments and smile for me. I would want that.
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
   <script>
     function openBook() {
       document.getElementById("cover").classList.add("hidden");
-      document.getElementById("inside").classList.remove("hidden");
+      document.getElementById("book").classList.remove("hidden");
     }
 
     function showMessage(type) {
+      document.getElementById("start").style.display = "none";
       const messages = document.querySelectorAll(".message");
-      messages.forEach(msg => msg.style.display = "none");
-      document.getElementById(type).style.display = "block";
+      messages.forEach(msg => msg.classList.remove("active"));
+      document.getElementById(type).classList.add("active");
     }
   </script>
 
