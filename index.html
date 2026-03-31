@@ -483,7 +483,7 @@
 
     function showPage(pageNumber) {
       for (let i = 0; i < totalPages; i++) {
-        document.getElementById("page" + i).classList.remove("active");
+        document.getElementById("page" + i).classList.add("show")
       }
 
       document.getElementById("page" + pageNumber).classList.add("active");
