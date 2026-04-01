@@ -206,15 +206,10 @@
     }
 
     .page-panel {
-      display: none;
       position: relative;
       z-index: 1;
       min-height: 100%;
       padding-bottom: 40px;
-    }
-
-    .page-panel.active {
-      display: block;
     }
 
     .page-kicker {
@@ -598,13 +593,9 @@
         <div id="page1" class="page-panel">
           <div class="page-kicker">Page 1</div>
           <h1>About You</h1>
-
           <div style="display:flex; gap:20px; align-items:flex-start; margin-top:10px;">
             <div style="flex:1;">
-              <div class="intro">
-                A simple page about who you are.
-              </div>
-
+              <div class="intro">A simple page about who you are.</div>
               <div class="message-box">
                 <p><strong>Full Name:</strong> ____________________</p>
                 <p><strong>Birthday:</strong> ____________________</p>
@@ -614,28 +605,12 @@
                 <p><strong>Brothers & Sisters:</strong> ____________________</p>
               </div>
             </div>
-
             <div style="width:140px;">
-              <div style="
-                width:140px;
-                height:180px;
-                border:2px solid #c7964b;
-                border-radius:12px;
-                background:#efe4d1;
-                color:#8a6a45;
-                display:flex;
-                align-items:center;
-                justify-content:center;
-                text-align:center;
-                font-size:16px;
-                padding:10px;
-                box-sizing:border-box;
-              ">
+              <div style="width:140px;height:180px;border:2px solid #c7964b;border-radius:12px;background:#efe4d1;color:#8a6a45;display:flex;align-items:center;justify-content:center;text-align:center;font-size:16px;padding:10px;box-sizing:border-box;">
                 Picture of you
               </div>
             </div>
           </div>
-
           <div class="close-row">
             <button class="close-btn" onclick="closeBook()">Close Book</button>
           </div>
@@ -644,11 +619,7 @@
         <div id="page2" class="page-panel">
           <div class="page-kicker">Page 2</div>
           <h1>Father</h1>
-
-          <div class="intro">
-            A page for your father, with one main picture and smaller memory photos around him.
-          </div>
-
+          <div class="intro">A page for your father, with one main picture and smaller memory photos around him.</div>
           <div class="album-collage">
             <div class="album-frame">
               <div class="main-photo">Main picture of your father</div>
@@ -658,12 +629,10 @@
               <div class="mini-photo mini-bottom-right">Memory photo</div>
             </div>
           </div>
-
           <div class="message-box">
             <strong>Story about your father:</strong><br><br>
             Write about who he was, the memories you shared, what made him special, and anything you want remembered.
           </div>
-
           <div class="close-row">
             <button class="close-btn" onclick="closeBook()">Close Book</button>
           </div>
@@ -672,11 +641,7 @@
         <div id="page3" class="page-panel">
           <div class="page-kicker">Page 3</div>
           <h1>Mother</h1>
-
-          <div class="intro">
-            A page for your mother, with one main picture and smaller memory photos around her.
-          </div>
-
+          <div class="intro">A page for your mother, with one main picture and smaller memory photos around her.</div>
           <div class="album-collage">
             <div class="album-frame">
               <div class="main-photo">Main picture of your mother</div>
@@ -686,12 +651,10 @@
               <div class="mini-photo mini-bottom-right">Memory photo</div>
             </div>
           </div>
-
           <div class="message-box">
             <strong>Story about your mother:</strong><br><br>
             Write about who she was, the memories you shared, what made her special, and anything you want remembered.
           </div>
-
           <div class="close-row">
             <button class="close-btn" onclick="closeBook()">Close Book</button>
           </div>
@@ -700,11 +663,7 @@
         <div id="page4" class="page-panel">
           <div class="page-kicker">Page 4</div>
           <h1>Brothers & Sisters</h1>
-
-          <div class="intro">
-            A page for each brother or sister, with one main picture and smaller memory photos around them.
-          </div>
-
+          <div class="intro">A page for each brother or sister, with one main picture and smaller memory photos around them.</div>
           <div class="album-collage">
             <div class="album-frame">
               <div class="main-photo">Main picture of your brother or sister</div>
@@ -714,12 +673,11 @@
               <div class="mini-photo mini-bottom-right">Memory photo</div>
             </div>
           </div>
-
           <div class="message-box">
             <strong>Story about your brother or sister:</strong><br><br>
             Write about your memories together and anything you want remembered about them.
           </div>
-
+          <button class="add-btn" onclick="addSiblingPage()">+ New Brother/Sister Page</button>
           <div class="close-row">
             <button class="close-btn" onclick="closeBook()">Close Book</button>
           </div>
@@ -728,11 +686,7 @@
         <div id="page5" class="page-panel">
           <div class="page-kicker">Page 5</div>
           <h1>You</h1>
-
-          <div class="intro">
-            A page for you, with one main picture and smaller memory photos around you.
-          </div>
-
+          <div class="intro">A page for you, with one main picture and smaller memory photos around you.</div>
           <div class="album-collage">
             <div class="album-frame">
               <div class="main-photo">Main picture of you</div>
@@ -742,12 +696,10 @@
               <div class="mini-photo mini-bottom-right">Memory photo</div>
             </div>
           </div>
-
           <div class="message-box">
             <strong>Your story:</strong><br><br>
             Write about who you are, the life you lived, what mattered to you, and anything you want remembered about you.
           </div>
-
           <div class="close-row">
             <button class="close-btn" onclick="closeBook()">Close Book</button>
           </div>
@@ -756,10 +708,7 @@
         <div id="page6" class="page-panel">
           <div class="page-kicker">Page 6</div>
           <h1>Jobs Timeline</h1>
-
-          <div class="intro">
-            A timeline of the jobs you worked, the years you did them, what you were paid, and the stories that came with them.
-          </div>
+          <div class="intro">A timeline of the jobs you worked, the years you did them, what you were paid, and the stories that came with them.</div>
 
           <div class="timeline-entry">
             <div class="timeline-dot"></div>
@@ -768,7 +717,6 @@
               <strong>Years Worked:</strong> ____________________<br>
               <strong>Starting Pay:</strong> ____________________<br>
               <strong>Ending Pay:</strong> ____________________
-              
               <div class="timeline-grid">
                 <div class="job-photo">Job photo</div>
                 <div class="job-story">
@@ -779,25 +727,7 @@
             </div>
           </div>
 
-          <div class="timeline-entry">
-            <div class="timeline-dot"></div>
-            <div class="timeline-card">
-              <strong>Job Title:</strong> ____________________<br>
-              <strong>Years Worked:</strong> ____________________<br>
-              <strong>Starting Pay:</strong> ____________________<br>
-              <strong>Ending Pay:</strong> ____________________
-              
-              <div class="timeline-grid">
-                <div class="job-photo">Job photo</div>
-                <div class="job-story">
-                  <strong>Story about this job / photo:</strong><br><br>
-                  Add another job entry here. This page is meant to be unlimited, so more timeline entries can be added one after another.
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <button class="add-btn">+ Add Another Job Entry</button>
+          <button class="add-btn" onclick="addJobPage()">+ New Page for New Job</button>
 
           <div class="close-row">
             <button class="close-btn" onclick="closeBook()">Close Book</button>
@@ -809,7 +739,7 @@
 
   <script>
     let currentPage = 0;
-    const totalPages = 7;
+    let totalPages = 7;
 
     function openBook() {
       document.getElementById("closedStage").classList.add("hidden");
@@ -824,10 +754,12 @@
 
     function showPage(pageNumber) {
       for (let i = 0; i < totalPages; i++) {
-        document.getElementById("page" + i).classList.remove("active");
+        const page = document.getElementById("page" + i);
+        if (page) page.style.display = "none";
       }
 
-      document.getElementById("page" + pageNumber).classList.add("active");
+      const current = document.getElementById("page" + pageNumber);
+      if (current) current.style.display = "block";
 
       const leftDisabled = pageNumber === 0;
       const rightDisabled = pageNumber === totalPages - 1;
@@ -840,12 +772,82 @@
 
     function changePage(direction) {
       currentPage += direction;
-
       if (currentPage < 0) currentPage = 0;
       if (currentPage > totalPages - 1) currentPage = totalPages - 1;
-
       showPage(currentPage);
     }
+
+    function addSiblingPage() {
+      const newPageNumber = totalPages;
+      const html = `
+        <div id="page${newPageNumber}" class="page-panel">
+          <div class="page-kicker">Page ${newPageNumber}</div>
+          <h1>Brother / Sister</h1>
+          <div class="intro">Another brother or sister page with the same layout.</div>
+          <div class="album-collage">
+            <div class="album-frame">
+              <div class="main-photo">Main picture of your brother or sister</div>
+              <div class="mini-photo mini-top-left">Memory photo</div>
+              <div class="mini-photo mini-top-right">Memory photo</div>
+              <div class="mini-photo mini-bottom-left">Memory photo</div>
+              <div class="mini-photo mini-bottom-right">Memory photo</div>
+            </div>
+          </div>
+          <div class="message-box">
+            <strong>Story about your brother or sister:</strong><br><br>
+            Write about your memories together and anything you want remembered about them.
+          </div>
+          <button class="add-btn" onclick="addSiblingPage()">+ New Brother/Sister Page</button>
+          <div class="close-row">
+            <button class="close-btn" onclick="closeBook()">Close Book</button>
+          </div>
+        </div>
+      `;
+      document.querySelector(".right-page").insertAdjacentHTML("beforeend", html);
+      totalPages++;
+      currentPage = newPageNumber;
+      showPage(currentPage);
+    }
+
+    function addJobPage() {
+      const newPageNumber = totalPages;
+      const html = `
+        <div id="page${newPageNumber}" class="page-panel">
+          <div class="page-kicker">Page ${newPageNumber}</div>
+          <h1>Jobs Timeline</h1>
+          <div class="intro">Another job page with the same jobs timeline layout.</div>
+
+          <div class="timeline-entry">
+            <div class="timeline-dot"></div>
+            <div class="timeline-card">
+              <strong>Job Title:</strong> ____________________<br>
+              <strong>Years Worked:</strong> ____________________<br>
+              <strong>Starting Pay:</strong> ____________________<br>
+              <strong>Ending Pay:</strong> ____________________
+              <div class="timeline-grid">
+                <div class="job-photo">Job photo</div>
+                <div class="job-story">
+                  <strong>Story about this job / photo:</strong><br><br>
+                  Write about what this job was like, what the picture means, who you worked with, what you learned, and what you want remembered.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <button class="add-btn" onclick="addJobPage()">+ New Page for New Job</button>
+
+          <div class="close-row">
+            <button class="close-btn" onclick="closeBook()">Close Book</button>
+          </div>
+        </div>
+      `;
+      document.querySelector(".right-page").insertAdjacentHTML("beforeend", html);
+      totalPages++;
+      currentPage = newPageNumber;
+      showPage(currentPage);
+    }
+
+    showPage(0);
   </script>
 
 </body>
