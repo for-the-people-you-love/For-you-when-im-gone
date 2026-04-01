@@ -133,8 +133,8 @@
     }
 
     .open-book {
-      width: 900px;
-      height: 620px;
+      width: 920px;
+      height: 640px;
       display: grid;
       grid-template-columns: 1fr 20px 1fr;
       flex: 0 0 auto;
@@ -190,7 +190,8 @@
       padding: 28px;
       box-sizing: border-box;
       position: relative;
-      overflow: hidden;
+      overflow-y: auto;
+      overflow-x: hidden;
     }
 
     .right-page::before {
@@ -208,7 +209,8 @@
       display: none;
       position: relative;
       z-index: 1;
-      height: 100%;
+      min-height: 100%;
+      padding-bottom: 40px;
     }
 
     .page-panel.active {
@@ -258,7 +260,8 @@
       margin-top: 18px;
     }
 
-    .close-btn {
+    .close-btn,
+    .add-btn {
       padding: 12px 18px;
       font-size: 16px;
       border: none;
@@ -266,6 +269,10 @@
       background: #7b4e2f;
       color: white;
       cursor: pointer;
+    }
+
+    .add-btn {
+      margin-top: 14px;
     }
 
     .corner-nav {
@@ -469,6 +476,76 @@
       width: 100px;
       height: 115px;
       transform: rotate(-5deg);
+    }
+
+    .timeline-entry {
+      position: relative;
+      margin-bottom: 22px;
+      padding-left: 26px;
+    }
+
+    .timeline-entry::before {
+      content: "";
+      position: absolute;
+      left: 7px;
+      top: 0;
+      bottom: -22px;
+      width: 3px;
+      background: rgba(199,150,75,0.45);
+      border-radius: 999px;
+    }
+
+    .timeline-entry:last-of-type::before {
+      bottom: 0;
+    }
+
+    .timeline-dot {
+      position: absolute;
+      left: 0;
+      top: 18px;
+      width: 16px;
+      height: 16px;
+      background: #c7964b;
+      border-radius: 50%;
+      box-shadow: 0 0 0 4px rgba(199,150,75,0.18);
+    }
+
+    .timeline-card {
+      background: rgba(255,255,255,0.92);
+      border-radius: 16px;
+      padding: 18px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    }
+
+    .timeline-grid {
+      display: grid;
+      grid-template-columns: 150px 1fr;
+      gap: 18px;
+      align-items: start;
+      margin-top: 14px;
+    }
+
+    .job-photo {
+      width: 150px;
+      height: 180px;
+      border: 2px solid #c7964b;
+      border-radius: 12px;
+      background: #efe4d1;
+      color: #8a6a45;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      font-size: 15px;
+      padding: 10px;
+      box-sizing: border-box;
+    }
+
+    .job-story {
+      background: #f8f1e6;
+      border-radius: 12px;
+      padding: 14px;
+      line-height: 1.7;
     }
   </style>
 </head>
@@ -675,62 +752,61 @@
             <button class="close-btn" onclick="closeBook()">Close Book</button>
           </div>
         </div>
+
+        <div id="page6" class="page-panel">
+          <div class="page-kicker">Page 6</div>
+          <h1>Jobs Timeline</h1>
+
+          <div class="intro">
+            A timeline of the jobs you worked, the years you did them, what you were paid, and the stories that came with them.
+          </div>
+
+          <div class="timeline-entry">
+            <div class="timeline-dot"></div>
+            <div class="timeline-card">
+              <strong>Job Title:</strong> ____________________<br>
+              <strong>Years Worked:</strong> ____________________<br>
+              <strong>Starting Pay:</strong> ____________________<br>
+              <strong>Ending Pay:</strong> ____________________
+              
+              <div class="timeline-grid">
+                <div class="job-photo">Job photo</div>
+                <div class="job-story">
+                  <strong>Story about this job / photo:</strong><br><br>
+                  Write about what this job was like, what the picture means, who you worked with, what you learned, and what you want remembered.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="timeline-entry">
+            <div class="timeline-dot"></div>
+            <div class="timeline-card">
+              <strong>Job Title:</strong> ____________________<br>
+              <strong>Years Worked:</strong> ____________________<br>
+              <strong>Starting Pay:</strong> ____________________<br>
+              <strong>Ending Pay:</strong> ____________________
+              
+              <div class="timeline-grid">
+                <div class="job-photo">Job photo</div>
+                <div class="job-story">
+                  <strong>Story about this job / photo:</strong><br><br>
+                  Add another job entry here. This page is meant to be unlimited, so more timeline entries can be added one after another.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <button class="add-btn">+ Add Another Job Entry</button>
+
+          <div class="close-row">
+            <button class="close-btn" onclick="closeBook()">Close Book</button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-<div id="page6" class="page-panel">
-  <div class="page-kicker">Page 6</div>
-  <h1>Jobs Timeline</h1>
 
-  <div class="intro">
-    A timeline of the jobs you worked, the years you did them, what you were paid, and the stories that came with them.
-  </div>
-
-  <div class="message-box" style="margin-bottom:18px;">
-    <strong>Job Title:</strong> ____________________<br>
-    <strong>Years Worked:</strong> ____________________<br>
-    <strong>Starting Pay:</strong> ____________________<br>
-    <strong>Ending Pay:</strong> ____________________
-  </div>
-
-  <div style="
-    width:160px;
-    height:190px;
-    border:2px solid #c7964b;
-    border-radius:12px;
-    background:#efe4d1;
-    color:#8a6a45;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    text-align:center;
-    font-size:16px;
-    padding:10px;
-    box-sizing:border-box;
-    margin-bottom:18px;
-  ">
-    Job photo
-  </div>
-
-  <div class="message-box" style="margin-bottom:18px;">
-    <strong>Story about this job / photo:</strong><br><br>
-    Write about what this job was like, what the picture means, who you worked with, what you learned, and what you want remembered.
-  </div>
-
-  <div class="message-box" style="border:2px dashed #c7964b; background:#f8f1e6;">
-    <strong>Add another job entry</strong><br><br>
-    This page is meant to be unlimited, so more job entries can be added one after another in the timeline.
-  </div>
-
-  <div class="close-row">
-    <button class="close-btn" onclick="closeBook()">Close Book</button>
-  </div>
-</div>
-
-  <div class="close-row">
-    <button class="close-btn" onclick="closeBook()">Close Book</button>
-  </div>
-</div>
   <script>
     let currentPage = 0;
     const totalPages = 7;
