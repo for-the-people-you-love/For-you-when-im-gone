@@ -189,7 +189,7 @@
       border: 4px solid #d6bb90;
       border-left: none;
       border-radius: 0 22px 22px 0;
-      padding: 28px;
+      padding: 28px 54px 28px 28px;
       box-sizing: border-box;
       position: relative;
       overflow: hidden;
@@ -589,6 +589,57 @@
       font-size: 15px;
       line-height: 1.6;
     }
+
+    .corner-inline {
+      display: inline-block;
+      position: relative;
+      width: 28px;
+      height: 18px;
+      margin-left: 6px;
+      vertical-align: middle;
+    }
+
+    .corner-inline::before,
+    .corner-inline::after {
+      content: "";
+      position: absolute;
+      border-color: #c7964b;
+    }
+
+    .corner-inline::before {
+      right: 0;
+      top: 0;
+      width: 14px;
+      height: 14px;
+      border-top: 2px solid #c7964b;
+      border-right: 2px solid #c7964b;
+      border-radius: 0 6px 0 0;
+    }
+
+    .corner-inline::after {
+      right: 5px;
+      top: 5px;
+      width: 6px;
+      height: 6px;
+      border-top: 1px solid #c7964b;
+      border-right: 1px solid #c7964b;
+      border-radius: 0 3px 0 0;
+    }
+
+    .edge-close-book {
+      position: absolute;
+      right: 6px;
+      top: 90px;
+      color: #b00000;
+      font-size: 11px;
+      line-height: 1.05;
+      text-transform: uppercase;
+      text-align: center;
+      letter-spacing: 1px;
+      z-index: 3;
+      cursor: pointer;
+      user-select: none;
+    }
   </style>
 </head>
 <body>
@@ -609,6 +660,14 @@
       <div class="spine"></div>
 
       <div class="right-page">
+        <div class="edge-close-book" onclick="closeBook()">
+          C B<br>
+          L O<br>
+          O O<br>
+          S K<br>
+          E
+        </div>
+
         <div id="leftTopCorner" class="corner-nav left-top" onclick="changePage(-1)"></div>
         <div id="leftBottomCorner" class="corner-nav left-bottom" onclick="changePage(-1)"></div>
         <div id="rightTopCorner" class="corner-nav right-top" onclick="changePage(1)"></div>
@@ -633,14 +692,8 @@
           </div>
 
           <div class="instruction-box">
-            <strong>How to turn the pages:</strong><br>
-            Touch the <strong>gold corners on the right side</strong> of the page to go forward.<br>
-            Touch the <strong>gold corners on the left side</strong> of the page to go back.<br>
-            Use <strong>Close Book</strong> whenever you want to close the book.
-          </div>
-
-          <div class="close-row">
-            <button class="close-btn" onclick="closeBook()">Close Book</button>
+            <strong>Use the gold corners to go back and forth.</strong>
+            <span class="corner-inline"></span>
           </div>
         </div>
 
@@ -665,9 +718,6 @@
               </div>
             </div>
           </div>
-          <div class="close-row">
-            <button class="close-btn" onclick="closeBook()">Close Book</button>
-          </div>
         </div>
 
         <div id="page2" class="page-panel">
@@ -687,9 +737,6 @@
             <strong>Story about your father:</strong><br><br>
             Write about who he was, the memories you shared, what made him special, and anything you want remembered.
           </div>
-          <div class="close-row">
-            <button class="close-btn" onclick="closeBook()">Close Book</button>
-          </div>
         </div>
 
         <div id="page3" class="page-panel">
@@ -708,9 +755,6 @@
           <div class="message-box">
             <strong>Story about your mother:</strong><br><br>
             Write about who she was, the memories you shared, what made her special, and anything you want remembered.
-          </div>
-          <div class="close-row">
-            <button class="close-btn" onclick="closeBook()">Close Book</button>
           </div>
         </div>
 
@@ -732,9 +776,6 @@
             Write about your memories together and anything you want remembered about them.
           </div>
           <button class="add-btn" onclick="addSiblingPage()">+ New Brother/Sister Page</button>
-          <div class="close-row">
-            <button class="close-btn" onclick="closeBook()">Close Book</button>
-          </div>
         </div>
 
         <div id="page5" class="page-panel">
@@ -753,9 +794,6 @@
           <div class="message-box">
             <strong>Your story:</strong><br><br>
             Write about who you are, the life you lived, what mattered to you, and anything you want remembered about you.
-          </div>
-          <div class="close-row">
-            <button class="close-btn" onclick="closeBook()">Close Book</button>
           </div>
         </div>
 
@@ -780,9 +818,6 @@
             </div>
           </div>
           <button class="add-btn" onclick="addJobPage()">+ New Page for New Job</button>
-          <div class="close-row">
-            <button class="close-btn" onclick="closeBook()">Close Book</button>
-          </div>
         </div>
 
         <div id="page7" class="page-panel">
@@ -795,9 +830,6 @@
             Write the story behind this family photo, who is in it, what happened, and why this memory matters.
           </div>
           <button class="add-btn" onclick="addFamilyStoryPage()">+ New Family Story Page</button>
-          <div class="close-row">
-            <button class="close-btn" onclick="closeBook()">Close Book</button>
-          </div>
         </div>
 
         <div id="page8" class="page-panel">
@@ -810,9 +842,6 @@
             Write about the moment, the people in the photo, and what made this friendship or memory special.
           </div>
           <button class="add-btn" onclick="addFriendsPage()">+ New Friends Page</button>
-          <div class="close-row">
-            <button class="close-btn" onclick="closeBook()">Close Book</button>
-          </div>
         </div>
 
         <div id="page9" class="page-panel">
@@ -824,9 +853,6 @@
             Write whatever you want here...
           </div>
           <button class="add-btn" onclick="addDiaryPage()">+ New Diary Page</button>
-          <div class="close-row">
-            <button class="close-btn" onclick="closeBook()">Close Book</button>
-          </div>
         </div>
       </div>
     </div>
@@ -893,9 +919,6 @@
             Write about your memories together and anything you want remembered about them.
           </div>
           <button class="add-btn" onclick="addSiblingPage()">+ New Brother/Sister Page</button>
-          <div class="close-row">
-            <button class="close-btn" onclick="closeBook()">Close Book</button>
-          </div>
         </div>
       `);
       totalPages++;
@@ -927,9 +950,6 @@
             </div>
           </div>
           <button class="add-btn" onclick="addJobPage()">+ New Page for New Job</button>
-          <div class="close-row">
-            <button class="close-btn" onclick="closeBook()">Close Book</button>
-          </div>
         </div>
       `);
       totalPages++;
@@ -950,9 +970,6 @@
             Write the story behind this family photo, who is in it, what happened, and why this memory matters.
           </div>
           <button class="add-btn" onclick="addFamilyStoryPage()">+ New Family Story Page</button>
-          <div class="close-row">
-            <button class="close-btn" onclick="closeBook()">Close Book</button>
-          </div>
         </div>
       `);
       totalPages++;
@@ -973,9 +990,6 @@
             Write about the moment, the people in the photo, and what made this friendship or memory special.
           </div>
           <button class="add-btn" onclick="addFriendsPage()">+ New Friends Page</button>
-          <div class="close-row">
-            <button class="close-btn" onclick="closeBook()">Close Book</button>
-          </div>
         </div>
       `);
       totalPages++;
@@ -995,9 +1009,6 @@
             Write whatever you want here...
           </div>
           <button class="add-btn" onclick="addDiaryPage()">+ New Diary Page</button>
-          <div class="close-row">
-            <button class="close-btn" onclick="closeBook()">Close Book</button>
-          </div>
         </div>
       `);
       totalPages++;
