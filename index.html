@@ -14,6 +14,7 @@
       min-height: 100vh;
       color: white;
       overflow-x: auto;
+      overflow-y: hidden;
     }
 
     .hidden {
@@ -130,6 +131,7 @@
       padding: 16px;
       box-sizing: border-box;
       overflow-x: auto;
+      overflow-y: hidden;
     }
 
     .open-book {
@@ -190,8 +192,7 @@
       padding: 28px;
       box-sizing: border-box;
       position: relative;
-      overflow-y: auto;
-      overflow-x: hidden;
+      overflow: hidden;
     }
 
     .right-page::before {
@@ -208,9 +209,10 @@
     .page-panel {
       position: relative;
       z-index: 1;
-      min-height: 100%;
-      padding-bottom: 40px;
+      height: 100%;
+      padding-bottom: 24px;
       display: none;
+      overflow: hidden;
     }
 
     .page-kicker {
@@ -223,37 +225,39 @@
 
     .right-page h1 {
       margin-top: 0;
-      font-size: 36px;
+      font-size: 34px;
       line-height: 1.1;
-      margin-bottom: 14px;
+      margin-bottom: 12px;
     }
 
     .intro {
-      font-size: 17px;
-      line-height: 1.7;
-      margin-bottom: 22px;
+      font-size: 16px;
+      line-height: 1.6;
+      margin-bottom: 18px;
       color: #6a4931;
     }
 
     .index-list p {
-      margin: 8px 0;
-      font-size: 16px;
-      line-height: 1.5;
+      margin: 6px 0;
+      font-size: 15px;
+      line-height: 1.4;
     }
 
     .message-box {
       background: rgba(255,255,255,0.92);
       border-radius: 16px;
-      padding: 20px;
+      padding: 16px;
       box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-      font-size: 19px;
-      line-height: 1.8;
-      margin-top: 20px;
-      min-height: 120px;
+      font-size: 17px;
+      line-height: 1.65;
+      margin-top: 16px;
+      min-height: 100px;
+      max-height: 210px;
+      overflow: auto;
     }
 
     .close-row {
-      margin-top: 18px;
+      margin-top: 16px;
     }
 
     .close-btn,
@@ -397,22 +401,22 @@
     .album-collage {
       display: flex;
       justify-content: center;
-      margin-top: 18px;
-      margin-bottom: 22px;
+      margin-top: 14px;
+      margin-bottom: 18px;
     }
 
     .album-frame {
       position: relative;
-      width: 320px;
-      height: 270px;
+      width: 300px;
+      height: 245px;
     }
 
     .main-photo {
       position: absolute;
-      top: 35px;
-      left: 90px;
-      width: 140px;
-      height: 180px;
+      top: 32px;
+      left: 84px;
+      width: 132px;
+      height: 170px;
       border: 2px solid #c7964b;
       border-radius: 12px;
       background: #efe4d1;
@@ -421,7 +425,7 @@
       align-items: center;
       justify-content: center;
       text-align: center;
-      font-size: 16px;
+      font-size: 15px;
       padding: 10px;
       box-sizing: border-box;
       box-shadow: 0 6px 14px rgba(0,0,0,0.12);
@@ -430,8 +434,8 @@
 
     .mini-photo {
       position: absolute;
-      width: 95px;
-      height: 110px;
+      width: 88px;
+      height: 100px;
       border: 2px solid #c7964b;
       border-radius: 10px;
       background: #f4eadb;
@@ -440,7 +444,7 @@
       align-items: center;
       justify-content: center;
       text-align: center;
-      font-size: 13px;
+      font-size: 12px;
       padding: 8px;
       box-sizing: border-box;
       box-shadow: 0 4px 10px rgba(0,0,0,0.08);
@@ -448,36 +452,36 @@
 
     .mini-top-left {
       top: 0;
-      left: 10px;
+      left: 8px;
       transform: rotate(-6deg);
     }
 
     .mini-top-right {
       top: 5px;
-      right: 10px;
+      right: 8px;
       transform: rotate(6deg);
     }
 
     .mini-bottom-left {
       bottom: 0;
-      left: 5px;
-      width: 100px;
-      height: 115px;
+      left: 4px;
+      width: 94px;
+      height: 106px;
       transform: rotate(5deg);
     }
 
     .mini-bottom-right {
       bottom: 0;
-      right: 5px;
-      width: 100px;
-      height: 115px;
+      right: 4px;
+      width: 94px;
+      height: 106px;
       transform: rotate(-5deg);
     }
 
     .timeline-entry {
       position: relative;
-      margin-bottom: 22px;
-      padding-left: 26px;
+      margin-bottom: 18px;
+      padding-left: 24px;
     }
 
     .timeline-entry::before {
@@ -485,7 +489,7 @@
       position: absolute;
       left: 7px;
       top: 0;
-      bottom: -22px;
+      bottom: -18px;
       width: 3px;
       background: rgba(199,150,75,0.45);
       border-radius: 999px;
@@ -509,21 +513,46 @@
     .timeline-card {
       background: rgba(255,255,255,0.92);
       border-radius: 16px;
-      padding: 18px;
+      padding: 16px;
       box-shadow: 0 8px 20px rgba(0,0,0,0.08);
     }
 
     .timeline-grid {
       display: grid;
-      grid-template-columns: 150px 1fr;
-      gap: 18px;
+      grid-template-columns: 135px 1fr;
+      gap: 16px;
       align-items: start;
-      margin-top: 14px;
+      margin-top: 12px;
     }
 
     .job-photo {
-      width: 150px;
-      height: 180px;
+      width: 135px;
+      height: 165px;
+      border: 2px solid #c7964b;
+      border-radius: 12px;
+      background: #efe4d1;
+      color: #8a6a45;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      font-size: 14px;
+      padding: 10px;
+      box-sizing: border-box;
+    }
+
+    .job-story {
+      background: #f8f1e6;
+      border-radius: 12px;
+      padding: 12px;
+      line-height: 1.6;
+      max-height: 180px;
+      overflow: auto;
+    }
+
+    .story-page-photo {
+      width: 170px;
+      height: 185px;
       border: 2px solid #c7964b;
       border-radius: 12px;
       background: #efe4d1;
@@ -535,40 +564,30 @@
       font-size: 15px;
       padding: 10px;
       box-sizing: border-box;
-    }
-
-    .job-story {
-      background: #f8f1e6;
-      border-radius: 12px;
-      padding: 14px;
-      line-height: 1.7;
-    }
-
-    .story-page-photo {
-      width: 180px;
-      height: 200px;
-      border: 2px solid #c7964b;
-      border-radius: 12px;
-      background: #efe4d1;
-      color: #8a6a45;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      font-size: 16px;
-      padding: 10px;
-      box-sizing: border-box;
-      margin-bottom: 18px;
+      margin-bottom: 16px;
     }
 
     .diary-box {
       background: rgba(255,255,255,0.92);
       border-radius: 16px;
-      padding: 20px;
+      padding: 16px;
       box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-      min-height: 260px;
-      line-height: 1.9;
-      font-size: 18px;
+      min-height: 220px;
+      max-height: 320px;
+      overflow: auto;
+      line-height: 1.8;
+      font-size: 17px;
+    }
+
+    .instruction-box {
+      background: rgba(255,255,255,0.92);
+      border-radius: 14px;
+      padding: 14px 16px;
+      margin-top: 16px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+      color: #5d4634;
+      font-size: 15px;
+      line-height: 1.6;
     }
   </style>
 </head>
@@ -612,6 +631,14 @@
             <p>Page 11 — Important info</p>
             <p>Page 12 — Angel message</p>
           </div>
+
+          <div class="instruction-box">
+            <strong>How to turn the pages:</strong><br>
+            Touch the <strong>gold corners on the right side</strong> of the page to go forward.<br>
+            Touch the <strong>gold corners on the left side</strong> of the page to go back.<br>
+            Use <strong>Close Book</strong> whenever you want to close the book.
+          </div>
+
           <div class="close-row">
             <button class="close-btn" onclick="closeBook()">Close Book</button>
           </div>
