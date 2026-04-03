@@ -185,7 +185,7 @@
       position: relative;
       overflow: hidden;
       display: grid;
-      grid-template-columns: 1fr 52px;
+      grid-template-columns: 1fr 58px;
     }
 
     .right-page::before {
@@ -216,7 +216,8 @@
 
     .edge-close-book,
     .edge-add-page,
-    .edge-flip-back {
+    .edge-flip-back,
+    .edge-index {
       text-transform: uppercase;
       text-align: center;
       letter-spacing: 1px;
@@ -229,16 +230,21 @@
 
     .edge-close-book {
       color: #b00000;
-      margin-bottom: 28px;
+      margin-bottom: 24px;
     }
 
     .edge-add-page {
       color: #0c8a2a;
-      margin-bottom: 28px;
+      margin-bottom: 24px;
     }
 
     .edge-flip-back {
       color: #145cc7;
+      margin-bottom: 24px;
+    }
+
+    .edge-index {
+      color: #7b4e2f;
     }
 
     .page-panel {
@@ -271,10 +277,24 @@
       color: #6a4931;
     }
 
-    .index-list p {
-      margin: 5px 0;
+    .index-list {
+      display: grid;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .index-link {
+      background: rgba(255,255,255,0.75);
+      border: 1px solid rgba(199,150,75,0.45);
+      border-radius: 12px;
+      padding: 10px 12px;
       font-size: 14px;
-      line-height: 1.32;
+      line-height: 1.3;
+      cursor: pointer;
+    }
+
+    .index-link:active {
+      transform: scale(0.99);
     }
 
     .message-box {
@@ -299,165 +319,6 @@
       color: #5d4634;
       font-size: 14px;
       line-height: 1.5;
-    }
-
-    .corner-inline {
-      display: inline-block;
-      position: relative;
-      width: 28px;
-      height: 18px;
-      margin-left: 6px;
-      vertical-align: middle;
-    }
-
-    .corner-inline::before,
-    .corner-inline::after {
-      content: "";
-      position: absolute;
-      border-color: #c7964b;
-    }
-
-    .corner-inline::before {
-      right: 0;
-      top: 0;
-      width: 14px;
-      height: 14px;
-      border-top: 2px solid #c7964b;
-      border-right: 2px solid #c7964b;
-      border-radius: 0 6px 0 0;
-    }
-
-    .corner-inline::after {
-      right: 5px;
-      top: 5px;
-      width: 6px;
-      height: 6px;
-      border-top: 1px solid #c7964b;
-      border-right: 1px solid #c7964b;
-      border-radius: 0 3px 0 0;
-    }
-
-    .corner-nav {
-      position: absolute;
-      width: 44px;
-      height: 44px;
-      z-index: 4;
-      cursor: pointer;
-      user-select: none;
-    }
-
-    .corner-nav::before,
-    .corner-nav::after {
-      content: "";
-      position: absolute;
-      border-color: #c7964b;
-      opacity: 0.95;
-    }
-
-    .corner-nav.left-top {
-      top: 12px;
-      left: 12px;
-    }
-
-    .corner-nav.left-top::before {
-      top: 0;
-      left: 0;
-      width: 22px;
-      height: 22px;
-      border-top: 2px solid #c7964b;
-      border-left: 2px solid #c7964b;
-      border-radius: 8px 0 0 0;
-    }
-
-    .corner-nav.left-top::after {
-      top: 7px;
-      left: 7px;
-      width: 10px;
-      height: 10px;
-      border-top: 1px solid #c7964b;
-      border-left: 1px solid #c7964b;
-      border-radius: 4px 0 0 0;
-    }
-
-    .corner-nav.left-bottom {
-      bottom: 12px;
-      left: 12px;
-    }
-
-    .corner-nav.left-bottom::before {
-      bottom: 0;
-      left: 0;
-      width: 22px;
-      height: 22px;
-      border-bottom: 2px solid #c7964b;
-      border-left: 2px solid #c7964b;
-      border-radius: 0 0 0 8px;
-    }
-
-    .corner-nav.left-bottom::after {
-      bottom: 7px;
-      left: 7px;
-      width: 10px;
-      height: 10px;
-      border-bottom: 1px solid #c7964b;
-      border-left: 1px solid #c7964b;
-      border-radius: 0 0 0 4px;
-    }
-
-    .corner-nav.right-top {
-      top: 12px;
-      right: 64px;
-    }
-
-    .corner-nav.right-top::before {
-      top: 0;
-      right: 0;
-      width: 22px;
-      height: 22px;
-      border-top: 2px solid #c7964b;
-      border-right: 2px solid #c7964b;
-      border-radius: 0 8px 0 0;
-    }
-
-    .corner-nav.right-top::after {
-      top: 7px;
-      right: 7px;
-      width: 10px;
-      height: 10px;
-      border-top: 1px solid #c7964b;
-      border-right: 1px solid #c7964b;
-      border-radius: 0 4px 0 0;
-    }
-
-    .corner-nav.right-bottom {
-      bottom: 12px;
-      right: 64px;
-    }
-
-    .corner-nav.right-bottom::before {
-      bottom: 0;
-      right: 0;
-      width: 22px;
-      height: 22px;
-      border-bottom: 2px solid #c7964b;
-      border-right: 2px solid #c7964b;
-      border-radius: 0 0 8px 0;
-    }
-
-    .corner-nav.right-bottom::after {
-      bottom: 7px;
-      right: 7px;
-      width: 10px;
-      height: 10px;
-      border-bottom: 1px solid #c7964b;
-      border-right: 1px solid #c7964b;
-      border-radius: 0 0 4px 0;
-    }
-
-    .corner-nav.disabled {
-      opacity: 0.25;
-      cursor: default;
-      pointer-events: none;
     }
 
     .album-collage {
@@ -663,35 +524,28 @@
       <div class="spine"></div>
 
       <div class="right-page">
-        <div class="corner-nav left-top" id="leftTopCorner" onclick="changePage(-1)"></div>
-        <div class="corner-nav left-bottom" id="leftBottomCorner" onclick="changePage(-1)"></div>
-        <div class="corner-nav right-top" id="rightTopCorner" onclick="changePage(1)"></div>
-        <div class="corner-nav right-bottom" id="rightBottomCorner" onclick="changePage(1)"></div>
-
         <div class="page-content">
+
           <div id="page0" class="page-panel" data-chapter="0" data-page-in-chapter="0" data-parent-page="">
             <div class="page-kicker">Index</div>
             <h1>Book Index</h1>
+
             <div class="index-list">
-              <p>Chapter 1 — About you</p>
-              <p>Chapter 2 — Father</p>
-              <p>Chapter 3 — Mother</p>
-              <p>Chapter 4 — Brothers & Sisters</p>
-              <p>Chapter 5 — You</p>
-              <p>Chapter 6 — Jobs</p>
-              <p>Chapter 7 — Marriage</p>
-              <p>Chapter 8 — When I Started My Family</p>
-              <p>Chapter 9 — Family stories</p>
-              <p>Chapter 10 — Friends</p>
-              <p>Chapter 11 — Diary</p>
-              <p>Chapter 12 — Contacts & Angels</p>
-              <p>Chapter 13 — Important info</p>
-              <p>Chapter 14 — Angel message</p>
+              <div class="index-link" onclick="goToChapter(1)">Chapter 1 — About you</div>
+              <div class="index-link" onclick="goToChapter(2)">Chapter 2 — Father</div>
+              <div class="index-link" onclick="goToChapter(3)">Chapter 3 — Mother</div>
+              <div class="index-link" onclick="goToChapter(4)">Chapter 4 — Brothers & Sisters</div>
+              <div class="index-link" onclick="goToChapter(5)">Chapter 5 — You</div>
+              <div class="index-link" onclick="goToChapter(6)">Chapter 6 — Jobs</div>
+              <div class="index-link" onclick="goToChapter(7)">Chapter 7 — Marriage</div>
+              <div class="index-link" onclick="goToChapter(8)">Chapter 8 — When I Started My Family</div>
+              <div class="index-link" onclick="goToChapter(9)">Chapter 9 — Family stories</div>
+              <div class="index-link" onclick="goToChapter(10)">Chapter 10 — Friends</div>
+              <div class="index-link" onclick="goToChapter(11)">Chapter 11 — Diary</div>
             </div>
 
             <div class="instruction-box">
-              <strong>Use the gold corners to go back and forth.</strong>
-              <span class="corner-inline"></span>
+              Touch a chapter to jump right to it.
             </div>
           </div>
 
@@ -869,37 +723,24 @@
               Write whatever you want here...
             </div>
           </div>
+
         </div>
 
         <div class="page-rail">
           <div class="edge-close-book" onclick="closeBook()">
-            C B<br>
-            L O<br>
-            O O<br>
-            S K<br>
-            E
+            C<br>L<br>O<br>S<br>E<br><br>B<br>O<br>O<br>K
           </div>
 
           <div id="edgeAddPage" class="edge-add-page" style="display:none;">
-            +<br>
-            N<br>
-            E<br>
-            W<br><br>
-            P<br>
-            A<br>
-            G<br>
-            E
+            +<br>N<br>E<br>W<br><br>P<br>A<br>G<br>E
           </div>
 
           <div id="edgeFlipBack" class="edge-flip-back" style="display:none;">
-            F<br>
-            L<br>
-            I<br>
-            P<br><br>
-            B<br>
-            A<br>
-            C<br>
-            K
+            F<br>L<br>I<br>P<br><br>B<br>A<br>C<br>K
+          </div>
+
+          <div class="edge-index" onclick="goToIndex()">
+            I<br>N<br>D<br>E<br>X
           </div>
         </div>
       </div>
@@ -922,6 +763,20 @@
       document.getElementById("closedStage").classList.remove("hidden");
     }
 
+    function goToIndex() {
+      currentPage = 0;
+      showPage(currentPage);
+    }
+
+    function goToChapter(chapterNumber) {
+      const page = document.querySelector(`.page-panel[data-chapter="${chapterNumber}"][data-page-in-chapter="1"]`);
+      if (page) {
+        const id = page.id.replace("page", "");
+        currentPage = parseInt(id, 10);
+        showPage(currentPage);
+      }
+    }
+
     function updateKickers() {
       document.querySelectorAll(".page-panel").forEach(panel => {
         const chapter = panel.getAttribute("data-chapter");
@@ -931,13 +786,6 @@
           kicker.textContent = `Chapter ${chapter} — Page ${pageInChapter}`;
         }
       });
-    }
-
-    function getPageTitle(pageNumber) {
-      const page = document.getElementById("page" + pageNumber);
-      if (!page) return "";
-      const h1 = page.querySelector("h1");
-      return h1 ? h1.textContent.trim() : "";
     }
 
     function getChapter(pageNumber) {
@@ -975,14 +823,6 @@
       const current = document.getElementById("page" + pageNumber);
       if (current) current.style.display = "block";
 
-      const leftDisabled = pageNumber === 0;
-      const rightDisabled = pageNumber === totalPages - 1;
-
-      document.getElementById("leftTopCorner").classList.toggle("disabled", leftDisabled);
-      document.getElementById("leftBottomCorner").classList.toggle("disabled", leftDisabled);
-      document.getElementById("rightTopCorner").classList.toggle("disabled", rightDisabled);
-      document.getElementById("rightBottomCorner").classList.toggle("disabled", rightDisabled);
-
       const edgeAddPage = document.getElementById("edgeAddPage");
       const addAction = getAddAction(pageNumber);
 
@@ -1009,177 +849,109 @@
       }
     }
 
-    function changePage(direction) {
-      currentPage += direction;
-      if (currentPage < 0) currentPage = 0;
-      if (currentPage > totalPages - 1) currentPage = totalPages - 1;
-      showPage(currentPage);
-    }
-
     function addSiblingPage() {
-      const n = totalPages;
-      const chapter = 4;
-      const pageInChapter = getNextPageInChapter(chapter);
-      document.querySelector(".page-content").insertAdjacentHTML("beforeend", `
-        <div id="page${n}" class="page-panel" data-chapter="${chapter}" data-page-in-chapter="${pageInChapter}" data-parent-page="${currentPage}">
-          <div class="page-kicker kicker-label"></div>
-          <h1>Brother / Sister</h1>
-          <div class="intro">Another brother or sister page with the same layout.</div>
-          <div class="album-collage">
-            <div class="album-frame">
-              <div class="main-photo">Main picture of your brother or sister</div>
-              <div class="mini-photo mini-top-left">Memory photo</div>
-              <div class="mini-photo mini-top-right">Memory photo</div>
-              <div class="mini-photo mini-bottom-left">Memory photo</div>
-              <div class="mini-photo mini-bottom-right">Memory photo</div>
-            </div>
-          </div>
-          <div class="message-box">
-            <strong>Story about your brother or sister:</strong><br><br>
-            Write about your memories together and anything you want remembered about them.
+      addChapterPage(4, "Brother / Sister", `
+        <div class="intro">Another brother or sister page with the same layout.</div>
+        <div class="album-collage">
+          <div class="album-frame">
+            <div class="main-photo">Main picture of your brother or sister</div>
+            <div class="mini-photo mini-top-left">Memory photo</div>
+            <div class="mini-photo mini-top-right">Memory photo</div>
+            <div class="mini-photo mini-bottom-left">Memory photo</div>
+            <div class="mini-photo mini-bottom-right">Memory photo</div>
           </div>
         </div>
+        <div class="message-box">
+          <strong>Story about your brother or sister:</strong><br><br>
+          Write about your memories together and anything you want remembered about them.
+        </div>
       `);
-      totalPages++;
-      updateKickers();
-      currentPage = n;
-      showPage(currentPage);
     }
 
     function addJobPage() {
-      const n = totalPages;
-      const chapter = 6;
-      const pageInChapter = getNextPageInChapter(chapter);
-      document.querySelector(".page-content").insertAdjacentHTML("beforeend", `
-        <div id="page${n}" class="page-panel" data-chapter="${chapter}" data-page-in-chapter="${pageInChapter}" data-parent-page="${currentPage}">
-          <div class="page-kicker kicker-label"></div>
-          <h1>Jobs Timeline</h1>
-          <div class="intro">Another job page with the same jobs timeline layout.</div>
-          <div class="timeline-entry">
-            <div class="timeline-dot"></div>
-            <div class="timeline-card">
-              <strong>Job Title:</strong> ____________________<br>
-              <strong>Years Worked:</strong> ____________________<br>
-              <strong>Starting Pay:</strong> ____________________<br>
-              <strong>Ending Pay:</strong> ____________________
-              <div class="timeline-grid">
-                <div class="job-photo">Job photo</div>
-                <div class="job-story">
-                  <strong>Story about this job / photo:</strong><br><br>
-                  Write about what this job was like, what the picture means, who you worked with, what you learned, and what you want remembered.
-                </div>
+      addChapterPage(6, "Jobs Timeline", `
+        <div class="intro">Another job page with the same jobs timeline layout.</div>
+        <div class="timeline-entry">
+          <div class="timeline-dot"></div>
+          <div class="timeline-card">
+            <strong>Job Title:</strong> ____________________<br>
+            <strong>Years Worked:</strong> ____________________<br>
+            <strong>Starting Pay:</strong> ____________________<br>
+            <strong>Ending Pay:</strong> ____________________
+            <div class="timeline-grid">
+              <div class="job-photo">Job photo</div>
+              <div class="job-story">
+                <strong>Story about this job / photo:</strong><br><br>
+                Write about what this job was like, what the picture means, who you worked with, what you learned, and what you want remembered.
               </div>
             </div>
           </div>
         </div>
       `);
-      totalPages++;
-      updateKickers();
-      currentPage = n;
-      showPage(currentPage);
     }
 
     function addMarriagePage() {
-      const n = totalPages;
-      const chapter = 7;
-      const pageInChapter = getNextPageInChapter(chapter);
-      document.querySelector(".page-content").insertAdjacentHTML("beforeend", `
-        <div id="page${n}" class="page-panel" data-chapter="${chapter}" data-page-in-chapter="${pageInChapter}" data-parent-page="${currentPage}">
-          <div class="page-kicker kicker-label"></div>
-          <h1>Marriage</h1>
-          <div class="intro">Another marriage page with the same layout.</div>
-          <div class="story-page-photo">Marriage photo</div>
-          <div class="message-box">
-            <strong>Your marriage story:</strong><br><br>
-            Write about who you married, how you met, your wedding day, your life together, and what this love meant to you.
-          </div>
+      addChapterPage(7, "Marriage", `
+        <div class="intro">Another marriage page with the same layout.</div>
+        <div class="story-page-photo">Marriage photo</div>
+        <div class="message-box">
+          <strong>Your marriage story:</strong><br><br>
+          Write about who you married, how you met, your wedding day, your life together, and what this love meant to you.
         </div>
       `);
-      totalPages++;
-      updateKickers();
-      currentPage = n;
-      showPage(currentPage);
     }
 
     function addStartedFamilyPage() {
-      const n = totalPages;
-      const chapter = 8;
-      const pageInChapter = getNextPageInChapter(chapter);
-      document.querySelector(".page-content").insertAdjacentHTML("beforeend", `
-        <div id="page${n}" class="page-panel" data-chapter="${chapter}" data-page-in-chapter="${pageInChapter}" data-parent-page="${currentPage}">
-          <div class="page-kicker kicker-label"></div>
-          <h1>When I Started My Family</h1>
-          <div class="intro">Another page with the same family beginning layout.</div>
-          <div class="story-page-photo">Family beginning photo</div>
-          <div class="message-box">
-            <strong>Story about starting your family:</strong><br><br>
-            Write about becoming a parent, building your family, the people in these pictures, and what those moments meant to you.
-          </div>
+      addChapterPage(8, "When I Started My Family", `
+        <div class="intro">Another page with the same family beginning layout.</div>
+        <div class="story-page-photo">Family beginning photo</div>
+        <div class="message-box">
+          <strong>Story about starting your family:</strong><br><br>
+          Write about becoming a parent, building your family, the people in these pictures, and what those moments meant to you.
         </div>
       `);
-      totalPages++;
-      updateKickers();
-      currentPage = n;
-      showPage(currentPage);
     }
 
     function addFamilyStoryPage() {
-      const n = totalPages;
-      const chapter = 9;
-      const pageInChapter = getNextPageInChapter(chapter);
-      document.querySelector(".page-content").insertAdjacentHTML("beforeend", `
-        <div id="page${n}" class="page-panel" data-chapter="${chapter}" data-page-in-chapter="${pageInChapter}" data-parent-page="${currentPage}">
-          <div class="page-kicker kicker-label"></div>
-          <h1>Family Stories</h1>
-          <div class="intro">Another family story page with the same layout.</div>
-          <div class="story-page-photo">Family story photo</div>
-          <div class="message-box">
-            <strong>Family story:</strong><br><br>
-            Write the story behind this family photo, who is in it, what happened, and why this memory matters.
-          </div>
+      addChapterPage(9, "Family Stories", `
+        <div class="intro">Another family story page with the same layout.</div>
+        <div class="story-page-photo">Family story photo</div>
+        <div class="message-box">
+          <strong>Family story:</strong><br><br>
+          Write the story behind this family photo, who is in it, what happened, and why this memory matters.
         </div>
       `);
-      totalPages++;
-      updateKickers();
-      currentPage = n;
-      showPage(currentPage);
     }
 
     function addFriendsPage() {
-      const n = totalPages;
-      const chapter = 10;
-      const pageInChapter = getNextPageInChapter(chapter);
-      document.querySelector(".page-content").insertAdjacentHTML("beforeend", `
-        <div id="page${n}" class="page-panel" data-chapter="${chapter}" data-page-in-chapter="${pageInChapter}" data-parent-page="${currentPage}">
-          <div class="page-kicker kicker-label"></div>
-          <h1>Friends</h1>
-          <div class="intro">Another friends page with the same layout.</div>
-          <div class="story-page-photo">Friends photo</div>
-          <div class="message-box">
-            <strong>Story about your friends:</strong><br><br>
-            Write about the moment, the people in the photo, and what made this friendship or memory special.
-          </div>
+      addChapterPage(10, "Friends", `
+        <div class="intro">Another friends page with the same layout.</div>
+        <div class="story-page-photo">Friends photo</div>
+        <div class="message-box">
+          <strong>Story about your friends:</strong><br><br>
+          Write about the moment, the people in the photo, and what made this friendship or memory special.
         </div>
       `);
-      totalPages++;
-      updateKickers();
-      currentPage = n;
-      showPage(currentPage);
     }
 
     function addDiaryPage() {
+      addChapterPage(11, "Diary", `
+        <div class="intro">Another diary page with the same layout.</div>
+        <div class="diary-box">
+          <strong>Title or Date:</strong> ____________________<br><br>
+          Write whatever you want here...
+        </div>
+      `);
+    }
+
+    function addChapterPage(chapter, title, content) {
       const n = totalPages;
-      const chapter = 11;
       const pageInChapter = getNextPageInChapter(chapter);
       document.querySelector(".page-content").insertAdjacentHTML("beforeend", `
         <div id="page${n}" class="page-panel" data-chapter="${chapter}" data-page-in-chapter="${pageInChapter}" data-parent-page="${currentPage}">
           <div class="page-kicker kicker-label"></div>
-          <h1>Diary</h1>
-          <div class="intro">Another diary page with the same layout.</div>
-          <div class="diary-box">
-            <strong>Title or Date:</strong> ____________________<br><br>
-            Write whatever you want here...
-          </div>
+          <h1>${title}</h1>
+          ${content}
         </div>
       `);
       totalPages++;
