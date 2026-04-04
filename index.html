@@ -185,7 +185,7 @@
       position: relative;
       overflow: hidden;
       display: grid;
-      grid-template-columns: 1fr 58px;
+      grid-template-columns: 1fr 64px;
     }
 
     .right-page::before {
@@ -200,7 +200,7 @@
     }
 
     .page-content {
-      padding: 22px 10px 18px 18px;
+      padding: 18px 10px 14px 16px;
       height: 100%;
       box-sizing: border-box;
       overflow: hidden;
@@ -209,7 +209,7 @@
     .page-rail {
       border-left: 1px solid rgba(199,150,75,0.35);
       position: relative;
-      padding-top: 82px;
+      padding-top: 62px;
       box-sizing: border-box;
       background: rgba(255,250,242,0.35);
     }
@@ -217,11 +217,12 @@
     .edge-close-book,
     .edge-add-page,
     .edge-flip-back,
-    .edge-index {
+    .edge-index,
+    .edge-next-chapter {
       text-transform: uppercase;
       text-align: center;
       letter-spacing: 1px;
-      font-size: 11px;
+      font-size: 10px;
       line-height: 1.02;
       cursor: pointer;
       user-select: none;
@@ -230,21 +231,26 @@
 
     .edge-close-book {
       color: #b00000;
-      margin-bottom: 24px;
+      margin-bottom: 18px;
     }
 
     .edge-add-page {
       color: #0c8a2a;
-      margin-bottom: 24px;
+      margin-bottom: 18px;
     }
 
     .edge-flip-back {
       color: #145cc7;
-      margin-bottom: 24px;
+      margin-bottom: 18px;
     }
 
     .edge-index {
       color: #7b4e2f;
+      margin-bottom: 18px;
+    }
+
+    .edge-next-chapter {
+      color: #c7964b;
     }
 
     .page-panel {
@@ -256,24 +262,24 @@
     }
 
     .page-kicker {
-      font-size: 12px;
-      letter-spacing: 3px;
+      font-size: 11px;
+      letter-spacing: 2px;
       text-transform: uppercase;
       color: #a06d35;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
     }
 
     .right-page h1 {
       margin-top: 0;
-      font-size: 24px;
+      font-size: 22px;
       line-height: 1.02;
       margin-bottom: 6px;
     }
 
     .intro {
-      font-size: 14px;
-      line-height: 1.4;
-      margin-bottom: 10px;
+      font-size: 12px;
+      line-height: 1.28;
+      margin-bottom: 6px;
       color: #6a4931;
     }
 
@@ -289,25 +295,12 @@
       border-radius: 8px;
       padding: 5px 8px;
       font-size: 11px;
-      line-height: 1.1;
+      line-height: 1.05;
       cursor: pointer;
     }
 
     .index-link:active {
       transform: scale(0.98);
-    }
-
-    .message-box {
-      background: rgba(255,255,255,0.92);
-      border-radius: 16px;
-      padding: 14px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-      font-size: 15px;
-      line-height: 1.45;
-      margin-top: 12px;
-      min-height: 90px;
-      max-height: 210px;
-      overflow: auto;
     }
 
     .instruction-box {
@@ -318,7 +311,37 @@
       box-shadow: 0 8px 20px rgba(0,0,0,0.08);
       color: #5d4634;
       font-size: 11px;
-      line-height: 1.1;
+      line-height: 1.08;
+    }
+
+    .full-page-section {
+      min-height: 560px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .message-box {
+      background: rgba(255,255,255,0.92);
+      border-radius: 16px;
+      padding: 10px 12px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+      font-size: 13px;
+      line-height: 1.28;
+      margin-top: 8px;
+      overflow: hidden;
+    }
+
+    .bottom-fill-box {
+      background: rgba(255,255,255,0.92);
+      border-radius: 16px;
+      padding: 10px 12px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+      min-height: 90px;
+      font-size: 12px;
+      line-height: 1.28;
+      overflow: hidden;
     }
 
     .about-you-wrap {
@@ -326,7 +349,8 @@
       grid-template-columns: 1fr 108px;
       gap: 12px;
       align-items: start;
-      margin-top: 6px;
+      margin-top: 4px;
+      min-height: 500px;
     }
 
     .about-you-fields {
@@ -335,11 +359,16 @@
       padding: 12px 14px;
       box-shadow: 0 8px 20px rgba(0,0,0,0.08);
       font-size: 13px;
-      line-height: 1.2;
+      line-height: 1.15;
+      min-height: 500px;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
 
     .about-row {
-      margin: 0 0 8px 0;
+      margin: 0 0 10px 0;
     }
 
     .about-row:last-child {
@@ -365,22 +394,22 @@
     .album-collage {
       display: flex;
       justify-content: center;
-      margin-top: 8px;
-      margin-bottom: 12px;
+      margin-top: 4px;
+      margin-bottom: 6px;
     }
 
     .album-frame {
       position: relative;
-      width: 248px;
-      height: 208px;
+      width: 230px;
+      height: 192px;
     }
 
     .main-photo {
       position: absolute;
-      top: 28px;
-      left: 69px;
-      width: 108px;
-      height: 143px;
+      top: 25px;
+      left: 64px;
+      width: 102px;
+      height: 134px;
       border: 2px solid #c7964b;
       border-radius: 12px;
       background: #efe4d1;
@@ -389,7 +418,7 @@
       align-items: center;
       justify-content: center;
       text-align: center;
-      font-size: 14px;
+      font-size: 13px;
       padding: 8px;
       box-sizing: border-box;
       box-shadow: 0 6px 14px rgba(0,0,0,0.12);
@@ -398,8 +427,8 @@
 
     .mini-photo {
       position: absolute;
-      width: 74px;
-      height: 86px;
+      width: 68px;
+      height: 80px;
       border: 2px solid #c7964b;
       border-radius: 10px;
       background: #f4eadb;
@@ -408,8 +437,8 @@
       align-items: center;
       justify-content: center;
       text-align: center;
-      font-size: 11px;
-      padding: 6px;
+      font-size: 10px;
+      padding: 5px;
       box-sizing: border-box;
       box-shadow: 0 4px 10px rgba(0,0,0,0.08);
     }
@@ -429,31 +458,31 @@
     .mini-bottom-left {
       bottom: 0;
       left: 0;
-      width: 80px;
-      height: 92px;
+      width: 74px;
+      height: 86px;
       transform: rotate(5deg);
     }
 
     .mini-bottom-right {
       bottom: 0;
       right: 0;
-      width: 80px;
-      height: 92px;
+      width: 74px;
+      height: 86px;
       transform: rotate(-5deg);
     }
 
     .timeline-entry {
       position: relative;
-      margin-bottom: 12px;
-      padding-left: 22px;
+      margin-bottom: 4px;
+      padding-left: 20px;
     }
 
     .timeline-entry::before {
       content: "";
       position: absolute;
-      left: 7px;
+      left: 6px;
       top: 0;
-      bottom: -12px;
+      bottom: -4px;
       width: 3px;
       background: rgba(199,150,75,0.45);
       border-radius: 999px;
@@ -466,9 +495,9 @@
     .timeline-dot {
       position: absolute;
       left: 0;
-      top: 16px;
-      width: 14px;
-      height: 14px;
+      top: 14px;
+      width: 13px;
+      height: 13px;
       background: #c7964b;
       border-radius: 50%;
       box-shadow: 0 0 0 4px rgba(199,150,75,0.18);
@@ -477,23 +506,23 @@
     .timeline-card {
       background: rgba(255,255,255,0.92);
       border-radius: 16px;
-      padding: 14px;
+      padding: 10px;
       box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-      font-size: 14px;
-      line-height: 1.4;
+      font-size: 12px;
+      line-height: 1.24;
     }
 
     .timeline-grid {
       display: grid;
-      grid-template-columns: 112px 1fr;
-      gap: 12px;
+      grid-template-columns: 104px 1fr;
+      gap: 10px;
       align-items: start;
-      margin-top: 10px;
+      margin-top: 8px;
     }
 
     .job-photo {
-      width: 112px;
-      height: 140px;
+      width: 104px;
+      height: 128px;
       border: 2px solid #c7964b;
       border-radius: 12px;
       background: #efe4d1;
@@ -502,7 +531,7 @@
       align-items: center;
       justify-content: center;
       text-align: center;
-      font-size: 13px;
+      font-size: 12px;
       padding: 8px;
       box-sizing: border-box;
     }
@@ -510,16 +539,16 @@
     .job-story {
       background: #f8f1e6;
       border-radius: 12px;
-      padding: 10px;
-      line-height: 1.4;
-      max-height: 150px;
-      overflow: auto;
-      font-size: 13px;
+      padding: 8px;
+      line-height: 1.24;
+      font-size: 11px;
+      min-height: 128px;
+      overflow: hidden;
     }
 
     .story-page-photo {
-      width: 145px;
-      height: 160px;
+      width: 140px;
+      height: 154px;
       border: 2px solid #c7964b;
       border-radius: 12px;
       background: #efe4d1;
@@ -528,22 +557,21 @@
       align-items: center;
       justify-content: center;
       text-align: center;
-      font-size: 14px;
+      font-size: 13px;
       padding: 8px;
       box-sizing: border-box;
-      margin-bottom: 12px;
+      margin-bottom: 6px;
     }
 
     .diary-box {
       background: rgba(255,255,255,0.92);
       border-radius: 16px;
-      padding: 14px;
+      padding: 10px 12px;
       box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-      min-height: 180px;
-      max-height: 260px;
-      overflow: auto;
-      line-height: 1.5;
-      font-size: 14px;
+      min-height: 240px;
+      line-height: 1.32;
+      font-size: 12px;
+      overflow: hidden;
     }
   </style>
 </head>
@@ -589,7 +617,7 @@
             </div>
 
             <div class="instruction-box">
-              Tap a chapter to open it.
+              Tap a chapter to open it. Use NEXT CHAPTER to move through the book in order.
             </div>
           </div>
 
@@ -602,10 +630,10 @@
               <div class="about-you-fields">
                 <p class="about-row"><strong>Full Name:</strong> ____________________</p>
                 <p class="about-row"><strong>Birthday:</strong> ____________________</p>
-                <p class="about-row"><strong>Where You Were Born:</strong> ____________________</p>
-                <p class="about-row"><strong>Father's Name:</strong> ____________________</p>
-                <p class="about-row"><strong>Mother's Name:</strong> ____________________</p>
-                <p class="about-row"><strong>Brothers & Sisters:</strong> ____________________</p>
+                <p class="about-row"><strong>Where You Were Born:</strong><br>____________________</p>
+                <p class="about-row"><strong>Father's Name:</strong><br>____________________</p>
+                <p class="about-row"><strong>Mother's Name:</strong><br>____________________</p>
+                <p class="about-row"><strong>Brothers & Sisters:</strong><br>____________________</p>
               </div>
 
               <div class="about-photo">
@@ -617,97 +645,137 @@
           <div id="page2" class="page-panel" data-chapter="2" data-page-in-chapter="1" data-parent-page="">
             <div class="page-kicker kicker-label"></div>
             <h1>Father</h1>
-            <div class="intro">A page for your father, with one main picture and smaller memory photos around him.</div>
-            <div class="album-collage">
-              <div class="album-frame">
-                <div class="main-photo">Main picture of your father</div>
-                <div class="mini-photo mini-top-left">Memory photo</div>
-                <div class="mini-photo mini-top-right">Memory photo</div>
-                <div class="mini-photo mini-bottom-left">Memory photo</div>
-                <div class="mini-photo mini-bottom-right">Memory photo</div>
+            <div class="full-page-section">
+              <div>
+                <div class="intro">A page for your father, with one main picture and smaller memory photos around him.</div>
+                <div class="album-collage">
+                  <div class="album-frame">
+                    <div class="main-photo">Main picture of your father</div>
+                    <div class="mini-photo mini-top-left">Memory photo</div>
+                    <div class="mini-photo mini-top-right">Memory photo</div>
+                    <div class="mini-photo mini-bottom-left">Memory photo</div>
+                    <div class="mini-photo mini-bottom-right">Memory photo</div>
+                  </div>
+                </div>
+                <div class="message-box">
+                  <strong>Story about your father:</strong><br><br>
+                  Write about who he was, the memories you shared, what made him special, and anything you want remembered.
+                </div>
               </div>
-            </div>
-            <div class="message-box">
-              <strong>Story about your father:</strong><br><br>
-              Write about who he was, the memories you shared, what made him special, and anything you want remembered.
+              <div class="bottom-fill-box">
+                <strong>More about him:</strong><br><br>
+                Add favorite sayings, important lessons, special dates, or family memories that belong here.
+              </div>
             </div>
           </div>
 
           <div id="page3" class="page-panel" data-chapter="3" data-page-in-chapter="1" data-parent-page="">
             <div class="page-kicker kicker-label"></div>
             <h1>Mother</h1>
-            <div class="intro">A page for your mother, with one main picture and smaller memory photos around her.</div>
-            <div class="album-collage">
-              <div class="album-frame">
-                <div class="main-photo">Main picture of your mother</div>
-                <div class="mini-photo mini-top-left">Memory photo</div>
-                <div class="mini-photo mini-top-right">Memory photo</div>
-                <div class="mini-photo mini-bottom-left">Memory photo</div>
-                <div class="mini-photo mini-bottom-right">Memory photo</div>
+            <div class="full-page-section">
+              <div>
+                <div class="intro">A page for your mother, with one main picture and smaller memory photos around her.</div>
+                <div class="album-collage">
+                  <div class="album-frame">
+                    <div class="main-photo">Main picture of your mother</div>
+                    <div class="mini-photo mini-top-left">Memory photo</div>
+                    <div class="mini-photo mini-top-right">Memory photo</div>
+                    <div class="mini-photo mini-bottom-left">Memory photo</div>
+                    <div class="mini-photo mini-bottom-right">Memory photo</div>
+                  </div>
+                </div>
+                <div class="message-box">
+                  <strong>Story about your mother:</strong><br><br>
+                  Write about who she was, the memories you shared, what made her special, and anything you want remembered.
+                </div>
               </div>
-            </div>
-            <div class="message-box">
-              <strong>Story about your mother:</strong><br><br>
-              Write about who she was, the memories you shared, what made her special, and anything you want remembered.
+              <div class="bottom-fill-box">
+                <strong>More about her:</strong><br><br>
+                Add traditions, family moments, loving memories, or anything you want preserved here.
+              </div>
             </div>
           </div>
 
           <div id="page4" class="page-panel" data-chapter="4" data-page-in-chapter="1" data-parent-page="">
             <div class="page-kicker kicker-label"></div>
             <h1>Brothers & Sisters</h1>
-            <div class="intro">A page for each brother or sister, with one main picture and smaller memory photos around them.</div>
-            <div class="album-collage">
-              <div class="album-frame">
-                <div class="main-photo">Main picture of your brother or sister</div>
-                <div class="mini-photo mini-top-left">Memory photo</div>
-                <div class="mini-photo mini-top-right">Memory photo</div>
-                <div class="mini-photo mini-bottom-left">Memory photo</div>
-                <div class="mini-photo mini-bottom-right">Memory photo</div>
+            <div class="full-page-section">
+              <div>
+                <div class="intro">A page for each brother or sister, with one main picture and smaller memory photos around them.</div>
+                <div class="album-collage">
+                  <div class="album-frame">
+                    <div class="main-photo">Main picture of your brother or sister</div>
+                    <div class="mini-photo mini-top-left">Memory photo</div>
+                    <div class="mini-photo mini-top-right">Memory photo</div>
+                    <div class="mini-photo mini-bottom-left">Memory photo</div>
+                    <div class="mini-photo mini-bottom-right">Memory photo</div>
+                  </div>
+                </div>
+                <div class="message-box">
+                  <strong>Story about your brother or sister:</strong><br><br>
+                  Write about your memories together and anything you want remembered about them.
+                </div>
               </div>
-            </div>
-            <div class="message-box">
-              <strong>Story about your brother or sister:</strong><br><br>
-              Write about your memories together and anything you want remembered about them.
+              <div class="bottom-fill-box">
+                <strong>Extra family memories:</strong><br><br>
+                Add birthdays, trips, inside jokes, or what made this bond special.
+              </div>
             </div>
           </div>
 
           <div id="page5" class="page-panel" data-chapter="5" data-page-in-chapter="1" data-parent-page="">
             <div class="page-kicker kicker-label"></div>
             <h1>You</h1>
-            <div class="intro">A page for you, with one main picture and smaller memory photos around you.</div>
-            <div class="album-collage">
-              <div class="album-frame">
-                <div class="main-photo">Main picture of you</div>
-                <div class="mini-photo mini-top-left">Memory photo</div>
-                <div class="mini-photo mini-top-right">Memory photo</div>
-                <div class="mini-photo mini-bottom-left">Memory photo</div>
-                <div class="mini-photo mini-bottom-right">Memory photo</div>
+            <div class="full-page-section">
+              <div>
+                <div class="intro">A page for you, with one main picture and smaller memory photos around you.</div>
+                <div class="album-collage">
+                  <div class="album-frame">
+                    <div class="main-photo">Main picture of you</div>
+                    <div class="mini-photo mini-top-left">Memory photo</div>
+                    <div class="mini-photo mini-top-right">Memory photo</div>
+                    <div class="mini-photo mini-bottom-left">Memory photo</div>
+                    <div class="mini-photo mini-bottom-right">Memory photo</div>
+                  </div>
+                </div>
+                <div class="message-box">
+                  <strong>Your story:</strong><br><br>
+                  Write about who you are, the life you lived, what mattered to you, and anything you want remembered about you.
+                </div>
               </div>
-            </div>
-            <div class="message-box">
-              <strong>Your story:</strong><br><br>
-              Write about who you are, the life you lived, what mattered to you, and anything you want remembered about you.
+              <div class="bottom-fill-box">
+                <strong>What mattered most:</strong><br><br>
+                Add values, beliefs, favorite memories, or the things you most want people to know.
+              </div>
             </div>
           </div>
 
           <div id="page6" class="page-panel" data-chapter="6" data-page-in-chapter="1" data-parent-page="">
             <div class="page-kicker kicker-label"></div>
             <h1>Jobs Timeline</h1>
-            <div class="intro">A timeline of the jobs you worked, the years you did them, what you were paid, and the stories that came with them.</div>
-            <div class="timeline-entry">
-              <div class="timeline-dot"></div>
-              <div class="timeline-card">
-                <strong>Job Title:</strong> ____________________<br>
-                <strong>Years Worked:</strong> ____________________<br>
-                <strong>Starting Pay:</strong> ____________________<br>
-                <strong>Ending Pay:</strong> ____________________
-                <div class="timeline-grid">
-                  <div class="job-photo">Job photo</div>
-                  <div class="job-story">
-                    <strong>Story about this job / photo:</strong><br><br>
-                    Write about what this job was like, what the picture means, who you worked with, what you learned, and what you want remembered.
+            <div class="full-page-section">
+              <div>
+                <div class="intro">A timeline of the jobs you worked, the years you did them, what you were paid, and the stories that came with them.</div>
+                <div class="timeline-entry">
+                  <div class="timeline-dot"></div>
+                  <div class="timeline-card">
+                    <strong>Job Title:</strong> ____________________<br>
+                    <strong>Years Worked:</strong> ____________________<br>
+                    <strong>Starting Pay:</strong> ____________________<br>
+                    <strong>Ending Pay:</strong> ____________________
+                    <div class="timeline-grid">
+                      <div class="job-photo">Job photo</div>
+                      <div class="job-story">
+                        <strong>Story about this job / photo:</strong><br><br>
+                        Write about what this job was like, what the picture means, who you worked with, what you learned, and what you want remembered.
+                      </div>
+                    </div>
                   </div>
                 </div>
+              </div>
+              <div class="bottom-fill-box">
+                <strong>Work memories:</strong><br><br>
+                Add milestones, promotions, favorite crews, lessons learned, or the work you were proud of.
               </div>
             </div>
           </div>
@@ -715,99 +783,163 @@
           <div id="page7" class="page-panel" data-chapter="7" data-page-in-chapter="1" data-parent-page="">
             <div class="page-kicker kicker-label"></div>
             <h1>Marriage</h1>
-            <div class="intro">A page for your marriage story, wedding memories, and pictures of the person you married.</div>
-            <div class="story-page-photo">Marriage photo</div>
-            <div class="message-box">
-              <strong>Your marriage story:</strong><br><br>
-              Write about who you married, how you met, your wedding day, your life together, and what this love meant to you.
+            <div class="full-page-section">
+              <div>
+                <div class="intro">A page for your marriage story, wedding memories, and pictures of the person you married.</div>
+                <div class="story-page-photo">Marriage photo</div>
+                <div class="message-box">
+                  <strong>Your marriage story:</strong><br><br>
+                  Write about who you married, how you met, your wedding day, your life together, and what this love meant to you.
+                </div>
+              </div>
+              <div class="bottom-fill-box">
+                <strong>Special moments:</strong><br><br>
+                Add more memories, trips, milestones, or anything that made your life together meaningful.
+              </div>
             </div>
           </div>
 
           <div id="page8" class="page-panel" data-chapter="8" data-page-in-chapter="1" data-parent-page="">
             <div class="page-kicker kicker-label"></div>
             <h1>When I Started My Family</h1>
-            <div class="intro">A page for the beginning of your own family, the people in it, and the memories that came with it.</div>
-            <div class="story-page-photo">Family beginning photo</div>
-            <div class="message-box">
-              <strong>Story about starting your family:</strong><br><br>
-              Write about becoming a parent, building your family, the people in these pictures, and what those moments meant to you.
+            <div class="full-page-section">
+              <div>
+                <div class="intro">A page for the beginning of your own family, the people in it, and the memories that came with it.</div>
+                <div class="story-page-photo">Family beginning photo</div>
+                <div class="message-box">
+                  <strong>Story about starting your family:</strong><br><br>
+                  Write about becoming a parent, building your family, the people in these pictures, and what those moments meant to you.
+                </div>
+              </div>
+              <div class="bottom-fill-box">
+                <strong>Family memories:</strong><br><br>
+                Add special moments, early memories, or meaningful milestones that belong with this chapter.
+              </div>
             </div>
           </div>
 
           <div id="page9" class="page-panel" data-chapter="9" data-page-in-chapter="1" data-parent-page="">
             <div class="page-kicker kicker-label"></div>
             <h1>Family Stories</h1>
-            <div class="intro">A page for family memories, photos, and the stories behind them.</div>
-            <div class="story-page-photo">Family story photo</div>
-            <div class="message-box">
-              <strong>Family story:</strong><br><br>
-              Write the story behind this family photo, who is in it, what happened, and why this memory matters.
+            <div class="full-page-section">
+              <div>
+                <div class="intro">A page for family memories, photos, and the stories behind them.</div>
+                <div class="story-page-photo">Family story photo</div>
+                <div class="message-box">
+                  <strong>Family story:</strong><br><br>
+                  Write the story behind this family photo, who is in it, what happened, and why this memory matters.
+                </div>
+              </div>
+              <div class="bottom-fill-box">
+                <strong>More details:</strong><br><br>
+                Add extra context, names, dates, places, or anything worth remembering.
+              </div>
             </div>
           </div>
 
           <div id="page10" class="page-panel" data-chapter="10" data-page-in-chapter="1" data-parent-page="">
             <div class="page-kicker kicker-label"></div>
             <h1>Friends</h1>
-            <div class="intro">A page for the friends in your life and the stories that go with them.</div>
-            <div class="story-page-photo">Friends photo</div>
-            <div class="message-box">
-              <strong>Story about your friends:</strong><br><br>
-              Write about the moment, the people in the photo, and what made this friendship or memory special.
+            <div class="full-page-section">
+              <div>
+                <div class="intro">A page for the friends in your life and the stories that go with them.</div>
+                <div class="story-page-photo">Friends photo</div>
+                <div class="message-box">
+                  <strong>Story about your friends:</strong><br><br>
+                  Write about the moment, the people in the photo, and what made this friendship or memory special.
+                </div>
+              </div>
+              <div class="bottom-fill-box">
+                <strong>Friend memories:</strong><br><br>
+                Add trips, laughs, hard times, loyalty, or the moments that made these friendships matter.
+              </div>
             </div>
           </div>
 
           <div id="page11" class="page-panel" data-chapter="11" data-page-in-chapter="1" data-parent-page="">
             <div class="page-kicker kicker-label"></div>
             <h1>Diary</h1>
-            <div class="intro">A private page for thoughts, memories, and anything you want to write down.</div>
-            <div class="diary-box">
-              <strong>Title or Date:</strong> ____________________<br><br>
-              Write whatever you want here...
+            <div class="full-page-section">
+              <div>
+                <div class="intro">A private page for thoughts, memories, and anything you want to write down.</div>
+                <div class="diary-box">
+                  <strong>Title or Date:</strong> ____________________<br><br>
+                  Write whatever you want here...
+                </div>
+              </div>
+              <div class="bottom-fill-box">
+                <strong>More thoughts:</strong><br><br>
+                Add another note, reflection, or memory that belongs with this diary page.
+              </div>
             </div>
           </div>
 
           <div id="page12" class="page-panel" data-chapter="12" data-page-in-chapter="1" data-parent-page="">
             <div class="page-kicker kicker-label"></div>
             <h1>Contacts & Angels</h1>
-            <div class="intro">Important people, who receives this book, and who your Angel is.</div>
-            <div class="message-box">
-              <strong>Your Angel:</strong><br>
-              ___________________________<br><br>
+            <div class="full-page-section">
+              <div>
+                <div class="intro">Important people, who receives this book, and who your Angel is.</div>
+                <div class="message-box">
+                  <strong>Your Angel:</strong><br>
+                  ___________________________<br><br>
 
-              <strong>Who receives this book:</strong><br>
-              ___________________________<br><br>
+                  <strong>Who receives this book:</strong><br>
+                  ___________________________<br><br>
 
-              <strong>Important Contacts:</strong><br>
-              ___________________________<br>
-              ___________________________<br>
-              ___________________________
+                  <strong>Important Contacts:</strong><br>
+                  ___________________________<br>
+                  ___________________________<br>
+                  ___________________________
+                </div>
+              </div>
+              <div class="bottom-fill-box">
+                <strong>Additional notes:</strong><br><br>
+                Add extra instructions, more contact details, or anything important for this chapter.
+              </div>
             </div>
           </div>
 
           <div id="page13" class="page-panel" data-chapter="13" data-page-in-chapter="1" data-parent-page="">
             <div class="page-kicker kicker-label"></div>
             <h1>Important Information</h1>
-            <div class="intro">Everything your Angel needs to know.</div>
-            <div class="message-box">
-              <strong>Insurance:</strong><br>
-              ___________________________<br><br>
+            <div class="full-page-section">
+              <div>
+                <div class="intro">Everything your Angel needs to know.</div>
+                <div class="message-box">
+                  <strong>Insurance:</strong><br>
+                  ___________________________<br><br>
 
-              <strong>Doctor:</strong><br>
-              ___________________________<br><br>
+                  <strong>Doctor:</strong><br>
+                  ___________________________<br><br>
 
-              <strong>Final Wishes:</strong><br>
-              ___________________________<br>
-              ___________________________<br>
-              ___________________________
+                  <strong>Final Wishes:</strong><br>
+                  ___________________________<br>
+                  ___________________________<br>
+                  ___________________________
+                </div>
+              </div>
+              <div class="bottom-fill-box">
+                <strong>Extra important details:</strong><br><br>
+                Add account notes, memberships, legal details, location information, or anything else your Angel needs.
+              </div>
             </div>
           </div>
 
           <div id="page14" class="page-panel" data-chapter="14" data-page-in-chapter="1" data-parent-page="">
             <div class="page-kicker kicker-label"></div>
             <h1>Angel Message</h1>
-            <div class="intro">A place for messages to family, friends, and important people.</div>
-            <div class="message-box">
-              Write your message here...
+            <div class="full-page-section">
+              <div>
+                <div class="intro">A place for messages to family, friends, and important people.</div>
+                <div class="message-box">
+                  Write your message here...
+                </div>
+              </div>
+              <div class="bottom-fill-box">
+                <strong>Final words:</strong><br><br>
+                Add anything you want your family, friends, or important people to remember.
+              </div>
             </div>
           </div>
 
@@ -829,6 +961,10 @@
           <div class="edge-index" onclick="goToIndex()">
             I<br>N<br>D<br>E<br>X
           </div>
+
+          <div class="edge-next-chapter" onclick="goToNextChapter()">
+            N<br>E<br>X<br>T<br><br>C<br>H<br>A<br>P<br>T<br>E<br>R
+          </div>
         </div>
       </div>
     </div>
@@ -837,6 +973,7 @@
   <script>
     let currentPage = 0;
     let totalPages = 15;
+    const maxChapter = 14;
 
     function openBook() {
       document.getElementById("closedStage").classList.add("hidden");
@@ -860,6 +997,18 @@
       if (page) {
         currentPage = parseInt(page.id.replace("page", ""), 10);
         showPage(currentPage);
+      }
+    }
+
+    function goToNextChapter() {
+      const currentChapter = getChapter(currentPage);
+      if (currentChapter === 0) {
+        goToChapter(1);
+        return;
+      }
+      const nextChapter = currentChapter + 1;
+      if (nextChapter <= maxChapter) {
+        goToChapter(nextChapter);
       }
     }
 
@@ -950,47 +1099,63 @@
       `);
 
       totalPages++;
-      updateKickers();
       currentPage = n;
+      updateKickers();
       showPage(currentPage);
     }
 
     function addSiblingPage() {
       addChapterPage(4, "Brother / Sister", `
-        <div class="intro">Another brother or sister page with the same layout.</div>
-        <div class="album-collage">
-          <div class="album-frame">
-            <div class="main-photo">Main picture of your brother or sister</div>
-            <div class="mini-photo mini-top-left">Memory photo</div>
-            <div class="mini-photo mini-top-right">Memory photo</div>
-            <div class="mini-photo mini-bottom-left">Memory photo</div>
-            <div class="mini-photo mini-bottom-right">Memory photo</div>
+        <div class="full-page-section">
+          <div>
+            <div class="intro">Another brother or sister page with the same layout.</div>
+            <div class="album-collage">
+              <div class="album-frame">
+                <div class="main-photo">Main picture of your brother or sister</div>
+                <div class="mini-photo mini-top-left">Memory photo</div>
+                <div class="mini-photo mini-top-right">Memory photo</div>
+                <div class="mini-photo mini-bottom-left">Memory photo</div>
+                <div class="mini-photo mini-bottom-right">Memory photo</div>
+              </div>
+            </div>
+            <div class="message-box">
+              <strong>Story about your brother or sister:</strong><br><br>
+              Write about your memories together and anything you want remembered about them.
+            </div>
           </div>
-        </div>
-        <div class="message-box">
-          <strong>Story about your brother or sister:</strong><br><br>
-          Write about your memories together and anything you want remembered about them.
+          <div class="bottom-fill-box">
+            <strong>Extra family memories:</strong><br><br>
+            Add birthdays, trips, inside jokes, or the things that made this bond special.
+          </div>
         </div>
       `);
     }
 
     function addJobPage() {
       addChapterPage(6, "Jobs Timeline", `
-        <div class="intro">Another job page with the same jobs timeline layout.</div>
-        <div class="timeline-entry">
-          <div class="timeline-dot"></div>
-          <div class="timeline-card">
-            <strong>Job Title:</strong> ____________________<br>
-            <strong>Years Worked:</strong> ____________________<br>
-            <strong>Starting Pay:</strong> ____________________<br>
-            <strong>Ending Pay:</strong> ____________________
-            <div class="timeline-grid">
-              <div class="job-photo">Job photo</div>
-              <div class="job-story">
-                <strong>Story about this job / photo:</strong><br><br>
-                Write about what this job was like, what the picture means, who you worked with, what you learned, and what you want remembered.
+        <div class="full-page-section">
+          <div>
+            <div class="intro">Another job page with the same jobs timeline layout.</div>
+            <div class="timeline-entry">
+              <div class="timeline-dot"></div>
+              <div class="timeline-card">
+                <strong>Job Title:</strong> ____________________<br>
+                <strong>Years Worked:</strong> ____________________<br>
+                <strong>Starting Pay:</strong> ____________________<br>
+                <strong>Ending Pay:</strong> ____________________
+                <div class="timeline-grid">
+                  <div class="job-photo">Job photo</div>
+                  <div class="job-story">
+                    <strong>Story about this job / photo:</strong><br><br>
+                    Write about what this job was like, what the picture means, who you worked with, what you learned, and what you want remembered.
+                  </div>
+                </div>
               </div>
             </div>
+          </div>
+          <div class="bottom-fill-box">
+            <strong>Work memories:</strong><br><br>
+            Add milestones, promotions, favorite crews, lessons learned, or the work you were proud of.
           </div>
         </div>
       `);
@@ -998,90 +1163,146 @@
 
     function addMarriagePage() {
       addChapterPage(7, "Marriage", `
-        <div class="intro">Another marriage page with the same layout.</div>
-        <div class="story-page-photo">Marriage photo</div>
-        <div class="message-box">
-          <strong>Your marriage story:</strong><br><br>
-          Write about who you married, how you met, your wedding day, your life together, and what this love meant to you.
+        <div class="full-page-section">
+          <div>
+            <div class="intro">Another marriage page with the same layout.</div>
+            <div class="story-page-photo">Marriage photo</div>
+            <div class="message-box">
+              <strong>Your marriage story:</strong><br><br>
+              Write about who you married, how you met, your wedding day, your life together, and what this love meant to you.
+            </div>
+          </div>
+          <div class="bottom-fill-box">
+            <strong>Special moments:</strong><br><br>
+            Add more memories, trips, milestones, or anything that made your life together meaningful.
+          </div>
         </div>
       `);
     }
 
     function addStartedFamilyPage() {
       addChapterPage(8, "When I Started My Family", `
-        <div class="intro">Another page with the same family beginning layout.</div>
-        <div class="story-page-photo">Family beginning photo</div>
-        <div class="message-box">
-          <strong>Story about starting your family:</strong><br><br>
-          Write about becoming a parent, building your family, the people in these pictures, and what those moments meant to you.
+        <div class="full-page-section">
+          <div>
+            <div class="intro">Another page with the same family beginning layout.</div>
+            <div class="story-page-photo">Family beginning photo</div>
+            <div class="message-box">
+              <strong>Story about starting your family:</strong><br><br>
+              Write about becoming a parent, building your family, the people in these pictures, and what those moments meant to you.
+            </div>
+          </div>
+          <div class="bottom-fill-box">
+            <strong>Family memories:</strong><br><br>
+            Add special moments, early memories, or meaningful milestones that belong with this chapter.
+          </div>
         </div>
       `);
     }
 
     function addFamilyStoryPage() {
       addChapterPage(9, "Family Stories", `
-        <div class="intro">Another family story page with the same layout.</div>
-        <div class="story-page-photo">Family story photo</div>
-        <div class="message-box">
-          <strong>Family story:</strong><br><br>
-          Write the story behind this family photo, who is in it, what happened, and why this memory matters.
+        <div class="full-page-section">
+          <div>
+            <div class="intro">Another family story page with the same layout.</div>
+            <div class="story-page-photo">Family story photo</div>
+            <div class="message-box">
+              <strong>Family story:</strong><br><br>
+              Write the story behind this family photo, who is in it, what happened, and why this memory matters.
+            </div>
+          </div>
+          <div class="bottom-fill-box">
+            <strong>More details:</strong><br><br>
+            Add extra context, names, dates, places, or anything worth remembering.
+          </div>
         </div>
       `);
     }
 
     function addFriendsPage() {
       addChapterPage(10, "Friends", `
-        <div class="intro">Another friends page with the same layout.</div>
-        <div class="story-page-photo">Friends photo</div>
-        <div class="message-box">
-          <strong>Story about your friends:</strong><br><br>
-          Write about the moment, the people in the photo, and what made this friendship or memory special.
+        <div class="full-page-section">
+          <div>
+            <div class="intro">Another friends page with the same layout.</div>
+            <div class="story-page-photo">Friends photo</div>
+            <div class="message-box">
+              <strong>Story about your friends:</strong><br><br>
+              Write about the moment, the people in the photo, and what made this friendship or memory special.
+            </div>
+          </div>
+          <div class="bottom-fill-box">
+            <strong>Friend memories:</strong><br><br>
+            Add trips, laughs, hard times, loyalty, or the moments that made these friendships matter.
+          </div>
         </div>
       `);
     }
 
     function addDiaryPage() {
       addChapterPage(11, "Diary", `
-        <div class="intro">Another diary page with the same layout.</div>
-        <div class="diary-box">
-          <strong>Title or Date:</strong> ____________________<br><br>
-          Write whatever you want here...
+        <div class="full-page-section">
+          <div>
+            <div class="intro">Another diary page with the same layout.</div>
+            <div class="diary-box">
+              <strong>Title or Date:</strong> ____________________<br><br>
+              Write whatever you want here...
+            </div>
+          </div>
+          <div class="bottom-fill-box">
+            <strong>More thoughts:</strong><br><br>
+            Add another note, reflection, or memory that belongs with this diary page.
+          </div>
         </div>
       `);
     }
 
     function addContactsPage() {
       addChapterPage(12, "Contacts & Angels", `
-        <div class="intro">Another contacts page for important people and Angel details.</div>
-        <div class="message-box">
-          <strong>Your Angel:</strong><br>
-          ___________________________<br><br>
+        <div class="full-page-section">
+          <div>
+            <div class="intro">Another contacts page for important people and Angel details.</div>
+            <div class="message-box">
+              <strong>Your Angel:</strong><br>
+              ___________________________<br><br>
 
-          <strong>Who receives this book:</strong><br>
-          ___________________________<br><br>
+              <strong>Who receives this book:</strong><br>
+              ___________________________<br><br>
 
-          <strong>Important Contacts:</strong><br>
-          ___________________________<br>
-          ___________________________<br>
-          ___________________________
+              <strong>Important Contacts:</strong><br>
+              ___________________________<br>
+              ___________________________<br>
+              ___________________________
+            </div>
+          </div>
+          <div class="bottom-fill-box">
+            <strong>Additional notes:</strong><br><br>
+            Add extra instructions, more contact details, or anything important for this chapter.
+          </div>
         </div>
       `);
     }
 
     function addImportantInfoPage() {
       addChapterPage(13, "Important Information", `
-        <div class="intro">Another page for important information your Angel needs to know.</div>
-        <div class="message-box">
-          <strong>Insurance:</strong><br>
-          ___________________________<br><br>
+        <div class="full-page-section">
+          <div>
+            <div class="intro">Another page for important information your Angel needs to know.</div>
+            <div class="message-box">
+              <strong>Insurance:</strong><br>
+              ___________________________<br><br>
 
-          <strong>Doctor:</strong><br>
-          ___________________________<br><br>
+              <strong>Doctor:</strong><br>
+              ___________________________<br><br>
 
-          <strong>Final Wishes:</strong><br>
-          ___________________________<br>
-          ___________________________<br>
-          ___________________________
+              <strong>Final Wishes:</strong><br>
+              ___________________________<br>
+              ___________________________<br>
+              ___________________________
+            </div>
+          </div>
+          <div class="bottom-fill-box">
+            <strong>Extra important details:</strong><br><br>
+            Add account notes, memberships, legal details, location information, or anything else your Angel needs.
+          </div>
         </div>
       `);
     }
@@ -1090,4 +1311,4 @@
     showPage(0);
   </script>
 </body>
-</html>
+              </html>
