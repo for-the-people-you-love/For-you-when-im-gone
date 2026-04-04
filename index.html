@@ -1,1220 +1,159 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>For You When I'm Gone</title>
-  <style>
-    :root{
-      --bg1:#2b1d14;
-      --bg2:#120d09;
-      --gold:#c79a4a;
-      --gold-soft:#e5c37c;
-      --paper:#fbf4e8;
-      --paper2:#efe0c5;
-      --ink:#4a2d1a;
-      --ink-soft:#6a4931;
-      --rail-red:#b00000;
-      --rail-green:#0c8a2a;
-      --rail-blue:#145cc7;
-      --rail-brown:#7b4e2f;
-      --shadow:0 24px 60px rgba(0,0,0,.45);
-      --panel-shadow:0 8px 20px rgba(0,0,0,.08);
-    }
-
-    * { box-sizing:border-box; }
-
-    body{
-      margin:0;
-      font-family:Georgia, serif;
-      background:
-        radial-gradient(circle at top, rgba(255,220,170,.08), transparent 30%),
-        linear-gradient(to bottom, var(--bg1), var(--bg2));
-      min-height:100vh;
-      color:white;
-      overflow:hidden;
-    }
-
-    .hidden{ display:none !important; }
-    #openedStage{ display:none; }
-    #openedStage.show{ display:flex; }
-
-    .stage{
-      min-height:100vh;
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      padding:16px;
-    }
-
-    /* CLOSED BOOK */
-    .closed-book-wrap{
-      position:relative;
-      width:360px;
-      height:500px;
-      cursor:pointer;
-    }
-
-    .page-stack-right{
-      position:absolute;
-      right:-10px;
-      top:18px;
-      width:26px;
-      height:454px;
-      background:
-        repeating-linear-gradient(
-          to bottom,
-          #f8f1e6 0px,
-          #f8f1e6 3px,
-          #e2d6c4 3px,
-          #e2d6c4 4px
-        );
-      border-radius:0 8px 8px 0;
-      box-shadow: inset 0 0 10px rgba(0,0,0,.08);
-      transform:skewY(-2deg);
-    }
-
-    .page-stack-bottom{
-      position:absolute;
-      left:14px;
-      bottom:-12px;
-      width:320px;
-      height:24px;
-      background:
-        repeating-linear-gradient(
-          to right,
-          #f8f1e6 0px,
-          #f8f1e6 5px,
-          #e2d6c4 5px,
-          #e2d6c4 6px
-        );
-      border-radius:0 0 12px 12px;
-      box-shadow: inset 0 0 10px rgba(0,0,0,.08);
-      transform:skewX(-10deg);
-    }
-
-    .closed-book{
-      position:absolute;
-      inset:0 16px 18px 0;
-      border-radius:12px 20px 16px 12px;
-      background:
-        radial-gradient(circle at 20% 15%, rgba(255,255,255,.08), transparent 18%),
-        linear-gradient(135deg, rgba(255,255,255,.03), transparent 28%),
-        linear-gradient(160deg, #2b1d15, #12100e 55%, #080707);
-      box-shadow:
-        18px 18px 40px rgba(0,0,0,.45),
-        inset 1px 1px 0 rgba(255,255,255,.03),
-        inset -18px -18px 30px rgba(0,0,0,.28);
-      border:1px solid rgba(255,255,255,.04);
-      overflow:hidden;
-      transform:rotate(-2deg);
-    }
-
-    .closed-book::before{
-      content:"";
-      position:absolute;
-      left:0;
-      top:0;
-      width:34px;
-      height:100%;
-      background:linear-gradient(to right, rgba(0,0,0,.55), rgba(255,255,255,.04));
-      box-shadow: inset -1px 0 0 rgba(255,255,255,.04);
-    }
-
-    .closed-book::after{
-      content:"";
-      position:absolute;
-      inset:10px;
-      border:1px solid rgba(199,154,74,.34);
-      border-radius:8px 14px 10px 8px;
-      pointer-events:none;
-    }
-
-    .cover-top-rule-1,
-    .cover-top-rule-2{
-      position:absolute;
-      left:72px;
-      right:92px;
-      height:2px;
-      background:linear-gradient(to right, transparent, var(--gold), transparent);
-      box-shadow:0 0 8px rgba(199,154,74,.25);
-    }
-
-    .cover-top-rule-1{ top:78px; }
-    .cover-top-rule-2{ top:112px; }
-
-    .cover-side-rule-1,
-    .cover-side-rule-2{
-      position:absolute;
-      top:144px;
-      bottom:70px;
-      width:2px;
-      background:linear-gradient(to bottom, transparent, var(--gold), transparent);
-      box-shadow:0 0 8px rgba(199,154,74,.25);
-    }
-
-    .cover-side-rule-1{ right:104px; }
-    .cover-side-rule-2{ right:68px; }
-
-    .cover-for-you{
-      position:absolute;
-      top:84px;
-      left:90px;
-      right:106px;
-      text-align:center;
-      color:var(--gold-soft);
-      font-size:22px;
-      letter-spacing:1px;
-      text-shadow:0 0 10px rgba(199,154,74,.18);
-    }
-
-    .cover-when-gone{
-      position:absolute;
-      top:155px;
-      bottom:80px;
-      right:74px;
-      writing-mode:vertical-rl;
-      text-orientation:mixed;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      color:var(--gold-soft);
-      font-size:22px;
-      letter-spacing:1px;
-      text-shadow:0 0 10px rgba(199,154,74,.18);
-    }
-
-    .cover-photo-slot{
-      position:absolute;
-      left:84px;
-      top:166px;
-      width:154px;
-      height:210px;
-      border:2px solid rgba(199,154,74,.82);
-      border-radius:10px;
-      background:
-        linear-gradient(135deg, rgba(255,255,255,.05), transparent 30%),
-        #1a1410;
-      box-shadow:
-        inset 0 0 0 1px rgba(255,255,255,.03),
-        0 10px 18px rgba(0,0,0,.18);
-      color:#8f7a63;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      text-align:center;
-      padding:10px;
-      font-size:14px;
-    }
-
-    .tap-open-note{
-      position:absolute;
-      left:0;
-      right:0;
-      bottom:20px;
-      text-align:center;
-      color:var(--gold-soft);
-      font-size:11px;
-      letter-spacing:2px;
-      text-transform:uppercase;
-      opacity:.85;
-    }
-
-    /* OPEN BOOK STAGE */
-    .open-wrap{
-      min-height:100vh;
-      width:100%;
-      justify-content:center;
-      align-items:center;
-      padding:10px;
-      overflow:hidden;
-    }
-
-    .book-scale-wrap{
-      width:1080px;
-      height:680px;
-      transform-origin:center center;
-      will-change:transform;
-      flex:0 0 auto;
-    }
-
-    .open-book{
-      width:1080px;
-      height:680px;
-      display:grid;
-      grid-template-columns: 430px 28px 430px 68px;
-      box-shadow:var(--shadow);
-      position:relative;
-    }
-
-    .left-cover{
-      background:
-        linear-gradient(135deg, rgba(255,255,255,.05), transparent 30%),
-        linear-gradient(135deg, #5e3b1f, #3a2312);
-      border:4px solid var(--gold);
-      border-right:none;
-      border-radius:22px 0 0 22px;
-      position:relative;
-      box-shadow:
-        inset 0 0 30px rgba(0,0,0,.22),
-        inset -10px 0 20px rgba(255,255,255,.04);
-      overflow:hidden;
-    }
-
-    .left-cover::before{
-      content:"";
-      position:absolute;
-      inset:14px;
-      border:1px solid rgba(240,209,138,.45);
-      border-radius:10px;
-    }
-
-    .spine{
-      background:
-        linear-gradient(to right, #614324, #d8c29c 38%, #725031 62%, #3b2817);
-      box-shadow:
-        inset 0 0 10px rgba(255,255,255,.18),
-        inset 0 0 12px rgba(0,0,0,.2);
-    }
-
-    .page-side{
-      position:relative;
-      background:
-        linear-gradient(to right, #f0dfc3 0%, #fbf4e8 10%, #fffaf2 100%);
-      color:var(--ink);
-      border-top:4px solid #d6bb90;
-      border-bottom:4px solid #d6bb90;
-      box-sizing:border-box;
-      overflow:hidden;
-    }
-
-    .left-page{
-      border-right:1px solid rgba(0,0,0,.08);
-    }
-
-    .right-page{
-      border-left:1px solid rgba(0,0,0,.06);
-      border-radius:0 22px 22px 0;
-    }
-
-    .left-page::before,
-    .right-page::before{
-      content:"";
-      position:absolute;
-      top:0; bottom:0;
-      width:24px;
-      pointer-events:none;
-    }
-
-    .left-page::before{
-      right:0;
-      background:linear-gradient(to left, rgba(0,0,0,.07), rgba(255,255,255,.34));
-    }
-
-    .right-page::before{
-      left:0;
-      background:linear-gradient(to right, rgba(0,0,0,.08), rgba(255,255,255,.35));
-    }
-
-    .page-pad{
-      padding:18px 14px 14px 18px;
-      height:100%;
-      overflow:hidden;
-      position:relative;
-      z-index:1;
-    }
-
-    .rail{
-      border-left:1px solid rgba(199,150,75,.35);
-      background:rgba(255,250,242,.35);
-      padding-top:58px;
-      text-align:center;
-      user-select:none;
-    }
-
-    .rail-item{
-      text-transform:uppercase;
-      letter-spacing:1px;
-      font-size:10px;
-      line-height:1.02;
-      cursor:pointer;
-      margin-bottom:16px;
-      text-align:center;
-    }
-
-    .rail-close{ color:var(--rail-red); }
-    .rail-add{ color:var(--rail-green); }
-    .rail-back{ color:var(--rail-blue); }
-    .rail-index{ color:var(--rail-brown); }
-    .rail-next{ color:var(--gold); }
-
-    .page-kicker{
-      font-size:11px;
-      letter-spacing:2px;
-      text-transform:uppercase;
-      color:#a06d35;
-      margin-bottom:6px;
-    }
-
-    h1{
-      margin:0 0 4px 0;
-      font-size:22px;
-      line-height:1.02;
-      color:var(--ink);
-    }
-
-    .intro{
-      font-size:11px;
-      line-height:1.22;
-      margin-bottom:6px;
-      color:var(--ink-soft);
-    }
-
-    .index-list{
-      display:grid;
-      gap:4px;
-      margin-top:4px;
-    }
-
-    .index-link{
-      background:rgba(255,255,255,.75);
-      border:1px solid rgba(199,150,75,.45);
-      border-radius:8px;
-      padding:5px 8px;
-      font-size:11px;
-      line-height:1.05;
-      cursor:pointer;
-    }
-
-    .instruction-box,
-    .soft-box,
-    .note-box,
-    .story-box,
-    .about-info-box,
-    .job-card,
-    .diary-box,
-    .important-large,
-    .message-side-box{
-      background:rgba(255,255,255,.92);
-      border-radius:16px;
-      box-shadow:var(--panel-shadow);
-    }
-
-    .instruction-box{
-      padding:6px 8px;
-      margin-top:6px;
-      color:#5d4634;
-      font-size:10.5px;
-      line-height:1.1;
-    }
-
-    .soft-box,
-    .note-box,
-    .story-box,
-    .about-info-box,
-    .important-large,
-    .message-side-box,
-    .diary-box{
-      padding:10px 12px;
-      overflow:hidden;
-    }
-
-    .note-box{
-      font-size:12px;
-      line-height:1.2;
-      min-height:74px;
-    }
-
-    .left-page-sheet,
-    .top-photo-page,
-    .about-layout,
-    .collage-page,
-    .job-page,
-    .contacts-page,
-    .important-page,
-    .message-page,
-    .diary-page{
-      height:560px;
-      display:grid;
-      gap:8px;
-    }
-
-    .left-page-sheet,
-    .top-photo-page,
-    .about-layout,
-    .message-page,
-    .diary-page,
-    .job-page{
-      grid-template-rows:auto auto 1fr auto;
-    }
-
-    .collage-page{
-      grid-template-rows:auto auto 1fr auto;
-    }
-
-    .contacts-page,
-    .important-page{
-      grid-template-rows:auto 1fr auto;
-    }
-
-    .left-back-photo,
-    .single-photo,
-    .about-main-photo,
-    .message-photo{
-      width:142px;
-      height:154px;
-      border:2px solid #c7964b;
-      border-radius:12px;
-      background:#efe4d1;
-      color:#8a6a45;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      text-align:center;
-      font-size:13px;
-      padding:8px;
-      margin-top:2px;
-    }
-
-    .left-ghost-box{
-      background:rgba(255,255,255,.78);
-      border-radius:16px;
-      padding:10px 12px;
-      font-size:11px;
-      line-height:1.18;
-      color:#7a614a;
-      box-shadow:var(--panel-shadow);
-    }
-
-    .about-info-box,
-    .story-box,
-    .message-side-box{
-      font-size:12px;
-      line-height:1.2;
-    }
-
-    .album-collage{
-      display:flex;
-      justify-content:center;
-      margin-top:2px;
-    }
-
-    .album-frame{
-      position:relative;
-      width:220px;
-      height:182px;
-    }
-
-    .main-photo{
-      position:absolute;
-      top:24px;
-      left:61px;
-      width:98px;
-      height:130px;
-      border:2px solid #c7964b;
-      border-radius:12px;
-      background:#efe4d1;
-      color:#8a6a45;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      text-align:center;
-      font-size:12px;
-      padding:8px;
-      box-shadow:0 6px 14px rgba(0,0,0,.12);
-      z-index:2;
-    }
-
-    .mini-photo{
-      position:absolute;
-      width:66px;
-      height:78px;
-      border:2px solid #c7964b;
-      border-radius:10px;
-      background:#f4eadb;
-      color:#8a6a45;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      text-align:center;
-      font-size:10px;
-      padding:5px;
-      box-shadow:0 4px 10px rgba(0,0,0,.08);
-    }
-
-    .mini-top-left{ top:0; left:2px; transform:rotate(-6deg); }
-    .mini-top-right{ top:4px; right:2px; transform:rotate(6deg); }
-    .mini-bottom-left{ bottom:0; left:0; width:72px; height:84px; transform:rotate(5deg); }
-    .mini-bottom-right{ bottom:0; right:0; width:72px; height:84px; transform:rotate(-5deg); }
-
-    .job-card{
-      padding:10px;
-      display:grid;
-      grid-template-rows:auto auto;
-      gap:8px;
-      overflow:hidden;
-    }
-
-    .job-lines{
-      font-size:12px;
-      line-height:1.1;
-    }
-
-    .job-grid{
-      display:grid;
-      grid-template-columns:86px 1fr;
-      gap:8px;
-      align-items:stretch;
-    }
-
-    .job-photo{
-      width:86px;
-      height:104px;
-      border:2px solid #c7964b;
-      border-radius:12px;
-      background:#efe4d1;
-      color:#8a6a45;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      text-align:center;
-      font-size:11px;
-      padding:6px;
-    }
-
-    .job-story{
-      background:#f8f1e6;
-      border-radius:12px;
-      padding:8px;
-      line-height:1.15;
-      font-size:10.5px;
-      min-height:104px;
-      overflow:hidden;
-    }
-
-    .diary-box{
-      min-height:240px;
-      line-height:1.22;
-      font-size:12px;
-    }
-
-    .contacts-grid,
-    .important-grid{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:10px;
-    }
-
-    .mini-info-box,
-    .important-small{
-      background:#f8f1e6;
-      border-radius:12px;
-      padding:10px;
-      font-size:11px;
-      line-height:1.15;
-      overflow:hidden;
-    }
-
-    .important-small{ min-height:92px; }
-    .important-large{
-      font-size:12px;
-      line-height:1.18;
-      min-height:138px;
-      margin-top:8px;
-    }
-
-    /* FLIP */
-    .flip-sheet{
-      position:absolute;
-      top:0;
-      width:430px;
-      height:100%;
-      transform-style:preserve-3d;
-      pointer-events:none;
-      z-index:15;
-      display:none;
-    }
-
-    .flip-sheet.show{ display:block; }
-
-    .flip-sheet.forward{
-      left:0;
-      transform-origin:left center;
-      animation:flipForward .85s ease-in-out forwards;
-    }
-
-    .flip-sheet.backward{
-      left:0;
-      transform-origin:left center;
-      animation:flipBackward .85s ease-in-out forwards;
-    }
-
-    .flip-face{
-      position:absolute;
-      inset:0;
-      backface-visibility:hidden;
-      overflow:hidden;
-      background:linear-gradient(to right, #f0dfc3 0%, #fbf4e8 12%, #fffaf2 100%);
-      border-left:1px solid rgba(0,0,0,.06);
-      box-shadow:0 16px 24px rgba(0,0,0,.18);
-    }
-
-    .flip-face.front::before,
-    .flip-face.back::before{
-      content:"";
-      position:absolute;
-      top:0; bottom:0;
-      width:24px;
-      pointer-events:none;
-    }
-
-    .flip-face.front::before{
-      left:0;
-      background:linear-gradient(to right, rgba(0,0,0,.08), rgba(255,255,255,.35));
-    }
-
-    .flip-face.back{
-      transform:rotateY(180deg);
-      background:linear-gradient(to left, #f0dfc3 0%, #fbf4e8 12%, #fffaf2 100%);
-    }
-
-    .flip-face.back::before{
-      right:0;
-      background:linear-gradient(to left, rgba(0,0,0,.08), rgba(255,255,255,.35));
-    }
-
-    .flip-pad{
-      padding:18px 14px 14px 18px;
-      height:100%;
-      overflow:hidden;
-    }
-
-    @keyframes flipForward{
-      0% { transform:rotateY(0deg); }
-      100% { transform:rotateY(-180deg); }
-    }
-
-    @keyframes flipBackward{
-      0% { transform:rotateY(-180deg); }
-      100% { transform:rotateY(0deg); }
-    }
-  </style>
-</head>
-<body>
-
-  <div id="closedStage" class="stage">
-    <div class="closed-book-wrap" onclick="openBook()">
-      <div class="page-stack-right"></div>
-      <div class="page-stack-bottom"></div>
-      <div class="closed-book">
-        <div class="cover-top-rule-1"></div>
-        <div class="cover-top-rule-2"></div>
-        <div class="cover-side-rule-1"></div>
-        <div class="cover-side-rule-2"></div>
-        <div class="cover-for-you">For You</div>
-        <div class="cover-when-gone">When I'm Gone</div>
-        <div class="cover-photo-slot">Cover picture</div>
-        <div class="tap-open-note">Tap to open</div>
-      </div>
-    </div>
-  </div>
-
-  <div id="openedStage" class="open-wrap">
-    <div id="bookScaleWrap" class="book-scale-wrap">
-      <div class="open-book">
-
-        <div class="left-cover"></div>
-        <div class="spine"></div>
-
-        <div class="page-side left-page">
-          <div class="page-pad" id="leftPagePad"></div>
-        </div>
-
-        <div class="page-side right-page">
-          <div class="page-pad" id="rightPagePad"></div>
-
-          <div id="flipSheet" class="flip-sheet">
-            <div class="flip-face front">
-              <div class="flip-pad" id="flipFrontPad"></div>
-            </div>
-            <div class="flip-face back">
-              <div class="flip-pad" id="flipBackPad"></div>
-            </div>
-          </div>
-        </div>
-
-        <div class="rail">
-          <div class="rail-item rail-close" onclick="closeBook()">
-            C<br>L<br>O<br>S<br>E<br><br>B<br>O<br>O<br>K
-          </div>
-
-          <div id="railAdd" class="rail-item rail-add" style="display:none;" onclick="addNewPage()">
-            +<br>N<br>E<br>W<br><br>P<br>A<br>G<br>E
-          </div>
-
-          <div id="railBack" class="rail-item rail-back" onclick="flipBackPage()">
-            F<br>L<br>I<br>P<br><br>B<br>A<br>C<br>K
-          </div>
-
-          <div class="rail-item rail-index" onclick="goToIndex()">
-            I<br>N<br>D<br>E<br>X
-          </div>
-
-          <div class="rail-item rail-next" onclick="goToNextChapter()">
-            N<br>E<br>X<br>T<br><br>C<br>H<br>A<br>P<br>T<br>E<br>R
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </div>
-
-  <script>
-    const BASE_PAGES = [
-      { chapter: 0, title: "Book Index", type: "index" },
-      { chapter: 1, title: "About You", type: "about" },
-      { chapter: 2, title: "Father", type: "collage" },
-      { chapter: 3, title: "Mother", type: "collage" },
-      { chapter: 4, title: "Brothers & Sisters", type: "collage" },
-      { chapter: 5, title: "You", type: "collage" },
-      { chapter: 6, title: "Jobs Timeline", type: "jobs" },
-      { chapter: 7, title: "Marriage", type: "topPhoto" },
-      { chapter: 8, title: "When I Started My Family", type: "topPhoto" },
-      { chapter: 9, title: "Family Stories", type: "topPhoto" },
-      { chapter: 10, title: "Friends", type: "topPhoto" },
-      { chapter: 11, title: "Diary", type: "diary" },
-      { chapter: 12, title: "Contacts and Emails", type: "contacts" },
-      { chapter: 13, title: "Important Information", type: "important" },
-      { chapter: 14, title: "Angel Message", type: "angel" }
-    ];
-
-    let pages = [];
-    let currentIndex = 0;
-    let animating = false;
-    const addableChapters = new Set([4,6,7,8,9,10,11,12,13]);
-
-    function resetPages() {
-      pages = BASE_PAGES.map((p, i) => ({
-        ...p,
-        id: `page-${i}`,
-        pageInChapter: p.chapter === 0 ? 0 : 1,
-        parentIndex: null
-      }));
-      recomputeChapterPageNumbers();
-    }
-
-    function recomputeChapterPageNumbers() {
-      const counts = {};
-      pages.forEach(p => {
-        if (p.chapter === 0) {
-          p.pageInChapter = 0;
-          return;
-        }
-        counts[p.chapter] = (counts[p.chapter] || 0) + 1;
-        p.pageInChapter = counts[p.chapter];
-      });
-    }
-
-    function updateBookScale() {
-      const wrap = document.getElementById("bookScaleWrap");
-      if (!wrap) return;
-      const availableW = window.innerWidth - 20;
-      const availableH = window.innerHeight - 20;
-      const scale = Math.min(availableW / 1080, availableH / 680, 1);
-      wrap.style.transform = `scale(${scale})`;
-    }
-
-    function openBook() {
-      document.getElementById("closedStage").classList.add("hidden");
-      document.getElementById("openedStage").classList.add("show");
-      if (!pages.length) resetPages();
-      currentIndex = 0;
-      renderSpread();
-      updateBookScale();
-    }
-
-    function closeBook() {
-      document.getElementById("openedStage").classList.remove("show");
-      document.getElementById("closedStage").classList.remove("hidden");
-    }
-
-    function getPage(i) {
-      return pages[i] || null;
-    }
-
-    function getCurrentPage() {
-      return getPage(currentIndex);
-    }
-
-    function canAddCurrentPage() {
-      const page = getCurrentPage();
-      return !!page && addableChapters.has(page.chapter);
-    }
-
-    function renderSpread() {
-      const current = getCurrentPage();
-      const previous = getPage(currentIndex - 1);
-
-      document.getElementById("leftPagePad").innerHTML = renderLeftPage(previous);
-      document.getElementById("rightPagePad").innerHTML = renderRightPage(current);
-
-      document.getElementById("railAdd").style.display = canAddCurrentPage() ? "block" : "none";
-      document.getElementById("railBack").style.display = currentIndex > 0 ? "block" : "none";
-    }
-
-    function goToIndex() {
-      if (animating) return;
-      currentIndex = 0;
-      renderSpread();
-    }
-
-    function goToChapter(chapterNumber) {
-      if (animating) return;
-      const index = pages.findIndex(p => p.chapter === chapterNumber && p.pageInChapter === 1);
-      if (index >= 0) {
-        currentIndex = index;
-        renderSpread();
-      }
-    }
-
-    function goToNextChapter() {
-      if (animating) return;
-      const current = getCurrentPage();
-      if (!current) return;
-      if (current.chapter === 0) {
-        animateToIndex(1, "forward");
-        return;
-      }
-      const nextIndex = pages.findIndex((p, idx) => idx > currentIndex && p.pageInChapter === 1 && p.chapter > current.chapter);
-      if (nextIndex >= 0) animateToIndex(nextIndex, "forward");
-    }
-
-    function flipBackPage() {
-      if (animating || currentIndex === 0) return;
-      animateToIndex(currentIndex - 1, "backward");
-    }
-
-    function addNewPage() {
-      if (animating) return;
-      const current = getCurrentPage();
-      if (!current || !addableChapters.has(current.chapter)) return;
-
-      const clone = {
-        chapter: current.chapter,
-        title: current.title,
-        type: current.type,
-        id: `page-${Date.now()}-${Math.random().toString(36).slice(2,7)}`,
-        pageInChapter: 1,
-        parentIndex: currentIndex
-      };
-
-      pages.splice(currentIndex + 1, 0, clone);
-      recomputeChapterPageNumbers();
-      animateToIndex(currentIndex + 1, "forward");
-    }
-
-    function animateToIndex(targetIndex, direction) {
-      if (animating) return;
-      const current = getCurrentPage();
-      const target = getPage(targetIndex);
-      if (!current || !target) return;
-
-      animating = true;
-      const flipSheet = document.getElementById("flipSheet");
-      const frontPad = document.getElementById("flipFrontPad");
-      const backPad = document.getElementById("flipBackPad");
-
-      if (direction === "forward") {
-        frontPad.innerHTML = renderRightPage(current);
-        backPad.innerHTML = renderLeftStylePage(current);
-        flipSheet.className = "flip-sheet show forward";
-      } else {
-        frontPad.innerHTML = renderRightPage(getPage(targetIndex));
-        backPad.innerHTML = renderLeftStylePage(getPage(targetIndex));
-        flipSheet.className = "flip-sheet show backward";
-      }
-
-      const onDone = () => {
-        flipSheet.removeEventListener("animationend", onDone);
-        flipSheet.className = "flip-sheet";
-        currentIndex = targetIndex;
-        renderSpread();
-        animating = false;
-      };
-
-      flipSheet.addEventListener("animationend", onDone);
-    }
-
-    function renderLeftPage(page) {
-      if (!page) {
-        return `
-          <div class="left-page-sheet">
-            <div class="page-kicker">Back Cover</div>
-            <h1 style="opacity:.72;">For You When I'm Gone</h1>
-            <div class="left-ghost-box">
-              The pages you flip will rest here on the left side of the open book.
-            </div>
-            <div class="left-ghost-box">
-              Turn a page to begin building the story.
-            </div>
-          </div>
-        `;
-      }
-      return renderLeftStylePage(page);
-    }
-
-    function renderLeftStylePage(page) {
-      return `
-        <div class="left-page-sheet">
-          <div class="page-kicker">Chapter ${page.chapter} — Page ${page.pageInChapter}</div>
-          <h1 style="opacity:.84;">${page.title}</h1>
-          <div class="left-back-photo">Back of turned page</div>
-          <div class="left-ghost-box">
-            This page has been turned and is now resting on the left side of the open book.
-          </div>
-          <div class="left-ghost-box">
-            Keep turning pages to continue through the book.
-          </div>
-        </div>
-      `;
-    }
-
-    function renderRightPage(page) {
-      if (!page) return "";
-      const kicker = page.chapter === 0
-        ? `<div class="page-kicker">Index</div>`
-        : `<div class="page-kicker">Chapter ${page.chapter} — Page ${page.pageInChapter}</div>`;
-
-      switch (page.type) {
-        case "index":
-          return `
-            ${kicker}
-            <h1>Book Index</h1>
-            <div class="index-list">
-              ${BASE_PAGES.filter(p => p.chapter > 0).map(p => `
-                <div class="index-link" onclick="goToChapter(${p.chapter})">Chapter ${p.chapter} — ${p.title}</div>
-              `).join("")}
-            </div>
-            <div class="instruction-box">
-              Tap a chapter to open it. Use NEXT CHAPTER to move through the book in order.
-            </div>
-          `;
-
-        case "about":
-          return `
-            ${kicker}
-            <h1>About You</h1>
-            <div class="about-layout">
-              <div class="intro">A page about who you are.</div>
-              <div class="about-main-photo">Picture of you</div>
-              <div class="about-info-box">
-                <strong>About you:</strong><br><br>
-                Full Name: ____________________<br><br>
-                Birthday: ____________________<br><br>
-                Where You Were Born: ____________________<br><br>
-                Father's Name: ____________________<br><br>
-                Mother's Name: ____________________<br><br>
-                Brothers & Sisters: ____________________
-              </div>
-              <div class="note-box">
-                <strong>Your story:</strong><br><br>
-                Write about who you are, your life, and what matters most.
-              </div>
-            </div>
-          `;
-
-        case "collage":
-          return `
-            ${kicker}
-            <h1>${page.title}</h1>
-            <div class="collage-page">
-              <div class="intro">A page with one main picture and smaller memory photos around it.</div>
-              <div class="album-collage">
-                <div class="album-frame">
-                  <div class="main-photo">Main picture</div>
-                  <div class="mini-photo mini-top-left">Memory photo</div>
-                  <div class="mini-photo mini-top-right">Memory photo</div>
-                  <div class="mini-photo mini-bottom-left">Memory photo</div>
-                  <div class="mini-photo mini-bottom-right">Memory photo</div>
-                </div>
-              </div>
-              <div class="story-box">
-                <strong>Story:</strong><br><br>
-                Write the story behind these memories and why this person matters.
-              </div>
-              <div class="note-box">
-                <strong>More memories:</strong><br><br>
-                Add special dates, favorite sayings, traditions, or more details worth keeping.
-              </div>
-            </div>
-          `;
-
-        case "jobs":
-          return `
-            ${kicker}
-            <h1>Jobs Timeline</h1>
-            <div class="job-page">
-              <div class="intro">A page for work history, photos, and the stories that came with each job.</div>
-              <div class="job-card">
-                <div class="job-lines">
-                  <strong>Job Title:</strong> ____________________<br>
-                  <strong>Years Worked:</strong> ____________________<br>
-                  <strong>Starting Pay:</strong> ____________________<br>
-                  <strong>Ending Pay:</strong> ____________________
-                </div>
-                <div class="job-grid">
-                  <div class="job-photo">Job photo</div>
-                  <div class="job-story">
-                    <strong>Story about this job / photo:</strong><br><br>
-                    Write about what this job was like, what the picture means, who you worked with, what you learned, and what you want remembered.
-                  </div>
-                </div>
-              </div>
-              <div class="soft-box" style="font-size:12px; line-height:1.18; min-height:132px;">
-                <strong>More work details:</strong><br><br>
-                Company: ____________________<br>
-                Best part of this job: ____________________<br>
-                People you remember: ____________________<br>
-                Biggest lesson: ____________________
-              </div>
-              <div class="note-box">
-                <strong>Work memories:</strong><br><br>
-                Add milestones, promotions, favorite crews, lessons learned, or the work you were proud of.
-              </div>
-            </div>
-          `;
-
-        case "topPhoto":
-          return `
-            ${kicker}
-            <h1>${page.title}</h1>
-            <div class="topPhoto-page top-photo-page">
-              <div class="intro">A page for the story, the picture, and the memory behind it.</div>
-              <div class="single-photo">${page.title} photo</div>
-              <div class="story-box">
-                <strong>Your story:</strong><br><br>
-                Write about this chapter, what happened, who was there, and why this part of your life mattered.
-              </div>
-              <div class="note-box">
-                <strong>Special moments:</strong><br><br>
-                Add more memories, trips, milestones, or anything meaningful that belongs with this chapter.
-              </div>
-            </div>
-          `;
-
-        case "diary":
-          return `
-            ${kicker}
-            <h1>Diary</h1>
-            <div class="diary-page">
-              <div class="intro">A private page for thoughts, memories, and anything you want to write down.</div>
-              <div class="diary-box">
-                <strong>Title or Date:</strong> ____________________<br><br>
-                Write whatever you want here...
-              </div>
-              <div class="soft-box" style="font-size:12px; line-height:1.2; min-height:136px;">
-                <strong>Another memory:</strong><br><br>
-                Add another thought, feeling, story, or note that belongs on this diary page.
-              </div>
-              <div class="note-box">
-                <strong>More thoughts:</strong><br><br>
-                Add another reflection or memory that belongs with this page.
-              </div>
-            </div>
-          `;
-
-        case "contacts":
-          return `
-            ${kicker}
-            <h1>Contacts and Emails</h1>
-            <div class="contacts-page">
-              <div class="intro">A page for email addresses and phone contacts that should be easy to find.</div>
-              <div class="contacts-grid">
-                <div class="mini-info-box">
-                  <strong>Email List:</strong><br><br>
-                  Name: __________________<br>
-                  Email: __________________<br><br>
-                  Name: __________________<br>
-                  Email: __________________<br><br>
-                  Name: __________________<br>
-                  Email: __________________
-                </div>
-                <div class="mini-info-box">
-                  <strong>Contacts & Phone Numbers:</strong><br><br>
-                  Name: __________________<br>
-                  Phone: __________________<br><br>
-                  Name: __________________<br>
-                  Phone: __________________<br><br>
-                  Name: __________________<br>
-                  Phone: __________________
-                </div>
-              </div>
-              <div class="note-box">
-                <strong>Extra contact notes:</strong><br><br>
-                Add who should be called first, backup numbers, or anything else important.
-              </div>
-            </div>
-          `;
-
-        case "important":
-          return `
-            ${kicker}
-            <h1>Important Information</h1>
-            <div class="important-page">
-              <div class="intro">Everything your Angel needs to know.</div>
-              <div>
-                <div class="important-grid">
-                  <div class="important-small">
-                    <strong>Insurance:</strong><br><br>
-                    ___________________________<br>
-                    ___________________________
-                  </div>
-                  <div class="important-small">
-                    <strong>Doctor:</strong><br><br>
-                    ___________________________<br>
-                    ___________________________
-                  </div>
-                </div>
-                <div class="important-large">
-                  <strong>Final Wishes:</strong><br><br>
-                  ___________________________<br><br>
-                  ___________________________<br><br>
-                  ___________________________
-                </div>
-              </div>
-              <div class="note-box">
-                <strong>Extra important details:</strong><br><br>
-                Add account notes, memberships, legal details, location information, or anything else your Angel needs.
-              </div>
-            </div>
-          `;
-
-        case "angel":
-          return `
-            ${kicker}
-            <h1>Angel Message</h1>
-            <div class="message-page">
-              <div class="intro">A place for a message and a picture that goes with it.</div>
-              <div class="message-photo">Picture for your message</div>
-              <div class="message-side-box">
-                <strong>Your message:</strong><br><br>
-                Write your message here so it can go together with the picture on this page.
-              </div>
-              <div class="note-box">
-                <strong>Final words:</strong><br><br>
-                Add anything you want your family, friends, or important people to remember.
-              </div>
-            </div>
-          `;
-
-        default:
-          return `${kicker}<h1>${page.title}</h1>`;
-      }
-    }
-
-    window.addEventListener("resize", updateBookScale);
-
-    resetPages();
-  </script>
-</body>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>For You When I'm Gone</title><style>
+body{
+  margin:0;
+  background:#3b2a1f;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+  font-family:serif;
+}
+
+/* BOOK CLOSED */
+.book-cover{
+  width:320px;
+  height:500px;
+  background:linear-gradient(145deg,#6b4a2f,#4a3221);
+  border-radius:12px;
+  box-shadow:0 10px 25px rgba(0,0,0,0.6);
+  position:relative;
+  color:gold;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  cursor:pointer;
+}
+
+.book-cover::before{
+  content:"";
+  position:absolute;
+  inset:10px;
+  border:2px solid gold;
+  border-radius:10px;
+}
+
+.cover-title{
+  font-size:28px;
+  margin-bottom:20px;
+}
+
+.cover-vertical{
+  position:absolute;
+  right:10px;
+  writing-mode:vertical-rl;
+  transform:rotate(180deg);
+  font-size:20px;
+}
+
+.cover-image{
+  width:150px;
+  height:180px;
+  border:2px solid gold;
+  border-radius:10px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin:20px 0;
+}
+
+.tap-text{
+  position:absolute;
+  bottom:15px;
+  font-size:14px;
+}
+
+/* BOOK OPEN */
+.book{
+  display:none;
+  width:360px;
+  height:520px;
+  background:#f4efe6;
+  border-radius:10px;
+  box-shadow:0 8px 20px rgba(0,0,0,0.5);
+  overflow:hidden;
+  position:relative;
+}
+
+.page{
+  position:absolute;
+  width:100%;
+  height:100%;
+  padding:20px;
+  box-sizing:border-box;
+  backface-visibility:hidden;
+  transition:transform 0.6s;
+}
+
+.page h1{
+  margin:0;
+  font-size:26px;
+}
+
+.page p{
+  font-size:14px;
+}
+
+.nav{
+  position:absolute;
+  right:10px;
+  top:50%;
+  transform:translateY(-50%);
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+button{
+  padding:8px;
+  border:none;
+  border-radius:6px;
+  cursor:pointer;
+}
+
+.next{background:gold;}
+.index{background:#ddd;}
+
+</style></head><body><!-- CLOSED BOOK --><div class="book-cover" onclick="openBook()">
+  <div class="cover-title">For You</div>  <div class="cover-image">Cover picture</div>  <div class="cover-vertical">When I'm Gone</div>  <div class="tap-text">TAP TO OPEN</div>
+</div><!-- OPEN BOOK --><div class="book" id="book">  <!-- INDEX -->  <div class="page" id="page0">
+    <h1>Book Index</h1>
+    <p onclick="goTo(1)">Chapter 1 — About You</p>
+    <p onclick="goTo(2)">Chapter 2 — Father</p>
+    <p onclick="goTo(3)">Chapter 3 — Mother</p>
+    <p onclick="goTo(4)">Chapter 4 — Brothers & Sisters</p>
+    <p onclick="goTo(5)">Chapter 5 — You</p>
+    <p onclick="goTo(6)">Chapter 6 — Jobs</p>
+  </div>  <!-- CHAPTER SAMPLE -->  <div class="page" id="page1" style="transform:rotateY(180deg)">
+    <h1>About You</h1>
+    <p>Full Name: __________</p>
+    <p>Birthday: __________</p><div class="nav">
+  <button class="next" onclick="nextPage()">Next</button>
+  <button class="index" onclick="goTo(0)">Index</button>
+</div>
+
+  </div></div><script>
+let current = 0;
+
+function openBook(){
+  document.querySelector('.book-cover').style.display='none';
+  document.getElementById('book').style.display='block';
+}
+
+function nextPage(){
+  document.getElementById('page'+current).style.transform='rotateY(-180deg)';
+  current++;
+  document.getElementById('page'+current).style.transform='rotateY(0deg)';
+}
+
+function goTo(n){
+  document.getElementById('page'+current).style.transform='rotateY(-180deg)';
+  current=n;
+  document.getElementById('page'+current).style.transform='rotateY(0deg)';
+}
+</script></body>
 </html>
