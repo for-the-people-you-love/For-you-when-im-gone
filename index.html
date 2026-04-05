@@ -13,215 +13,117 @@ body {
   color: white;
 }
 
-/* ===== CLOSED BOOK (NEW REAL LOOK) ===== */
+/* CLOSED BOOK */
 #closedStage {
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+}
+
+.book-cover {
+  width: 300px;
+  height: 420px;
+  background: #4b2e19;
+  border-radius: 8px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.6);
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-}
-
-.book-real {
-  width: 360px;
-  height: 220px;
-  background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Closed_book_%28PSF%29.png/640px-Closed_book_%28PSF%29.png');
-  background-size: cover;
-  background-position: center;
-  border-radius: 6px;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.6);
   cursor: pointer;
-  transition: transform 0.2s ease;
 }
 
-.book-real:hover {
-  transform: scale(1.03);
+.book-cover span {
+  color: #e0c48f;
+  font-size: 22px;
 }
 
-/* ===== OPEN BOOK ===== */
+/* OPEN BOOK */
 #openedStage {
   display: none;
+  height: 100vh;
   justify-content: center;
   align-items: center;
-  height: 100vh;
 }
 
 .open-book {
   width: 900px;
   height: 600px;
-  display: flex;
-  background: #f5e6cc;
-  color: #4a2d1a;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 }
 
-/* LEFT SIDE */
-.left {
-  width: 50%;
-  background: #3b2415;
+/* LEFT PAGE */
+.left-page {
+  background: #5a3a20;
 }
 
 /* RIGHT PAGE */
-.right {
-  width: 50%;
-  padding: 20px;
-  overflow: auto;
+.right-page {
   background: #fffaf2;
-}
-
-/* NAV */
-.nav {
-  position: absolute;
-  right: 10px;
-  top: 10px;
+  color: #4a2d1a;
+  padding: 20px;
+  overflow-y: auto;
 }
 
 button {
-  padding: 6px 10px;
-  margin: 4px;
-  cursor: pointer;
-}
-
-/* PAGES */
-.page {
-  display: none;
-}
-
-.page.active {
-  display: block;
+  margin-top: 20px;
 }
 </style>
 </head>
 
 <body>
 
-<!-- CLOSED BOOK -->
+<!-- CLOSED -->
 <div id="closedStage">
-  <div class="book-real" onclick="openBook()"></div>
+  <div class="book-cover" onclick="openBook()">
+    <span>Tap to Open</span>
+  </div>
 </div>
 
-<!-- OPEN BOOK -->
+<!-- OPEN -->
 <div id="openedStage">
   <div class="open-book">
+    <div class="left-page"></div>
 
-    <div class="left"></div>
+    <div class="right-page">
+      <h1>Book Index</h1>
 
-    <div class="right">
+      <p onclick="goToPage(1)">Chapter 1 — About You</p>
+      <p onclick="goToPage(2)">Chapter 2 — Father</p>
+      <p onclick="goToPage(3)">Chapter 3 — Mother</p>
 
-      <div class="nav">
-        <button onclick="goToIndex()">Index</button>
-        <button onclick="nextPage()">Next</button>
-        <button onclick="closeBook()">Close</button>
-      </div>
+      <div id="pageContent"></div>
 
-      <!-- INDEX -->
-      <div id="page0" class="page active">
-        <h2>Book Index</h2>
-        <p onclick="goToPage(1)">Chapter 1 — About You</p>
-        <p onclick="goToPage(2)">Chapter 2 — Father</p>
-        <p onclick="goToPage(3)">Chapter 3 — Mother</p>
-        <p onclick="goToPage(4)">Chapter 4 — Brothers & Sisters</p>
-        <p onclick="goToPage(5)">Chapter 5 — You</p>
-        <p onclick="goToPage(6)">Chapter 6 — Jobs</p>
-        <p onclick="goToPage(7)">Chapter 7 — Marriage</p>
-        <p onclick="goToPage(8)">Chapter 8 — Family</p>
-        <p onclick="goToPage(9)">Chapter 9 — Stories</p>
-        <p onclick="goToPage(10)">Chapter 10 — Friends</p>
-        <p onclick="goToPage(11)">Chapter 11 — Diary</p>
-        <p onclick="goToPage(12)">Chapter 12 — Contacts</p>
-        <p onclick="goToPage(13)">Chapter 13 — Important Info</p>
-        <p onclick="goToPage(14)">Chapter 14 — Angel Message</p>
-      </div>
-
-      <!-- SAMPLE PAGE -->
-      <div id="page1" class="page">
-        <h2>About You</h2>
-        <p>This is your life story.</p>
-      </div>
-
-      <div id="page2" class="page">
-        <h2>Father</h2>
-        <p>Your father's memories.</p>
-      </div>
-
-      <div id="page3" class="page">
-        <h2>Mother</h2>
-      </div>
-
-      <div id="page4" class="page">
-        <h2>Brothers & Sisters</h2>
-      </div>
-
-      <div id="page5" class="page">
-        <h2>You</h2>
-      </div>
-
-      <div id="page6" class="page">
-        <h2>Jobs</h2>
-      </div>
-
-      <div id="page7" class="page">
-        <h2>Marriage</h2>
-      </div>
-
-      <div id="page8" class="page">
-        <h2>Family</h2>
-      </div>
-
-      <div id="page9" class="page">
-        <h2>Stories</h2>
-      </div>
-
-      <div id="page10" class="page">
-        <h2>Friends</h2>
-      </div>
-
-      <div id="page11" class="page">
-        <h2>Diary</h2>
-      </div>
-
-      <div id="page12" class="page">
-        <h2>Contacts</h2>
-      </div>
-
-      <div id="page13" class="page">
-        <h2>Important Info</h2>
-      </div>
-
-      <div id="page14" class="page">
-        <h2>Angel Message</h2>
-      </div>
-
+      <button onclick="goToIndex()">Back to Index</button>
     </div>
   </div>
 </div>
 
 <script>
-let currentPage = 0;
-
-function openBook() {
+function openBook(){
   document.getElementById("closedStage").style.display = "none";
   document.getElementById("openedStage").style.display = "flex";
 }
 
-function closeBook() {
-  document.getElementById("openedStage").style.display = "none";
-  document.getElementById("closedStage").style.display = "flex";
+function goToIndex(){
+  document.getElementById("pageContent").innerHTML = "";
 }
 
-function goToPage(n) {
-  document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
-  document.getElementById("page" + n).classList.add("active");
-  currentPage = n;
-}
+function goToPage(n){
+  let content = "";
 
-function goToIndex() {
-  goToPage(0);
-}
-
-function nextPage() {
-  if (currentPage < 14) {
-    goToPage(currentPage + 1);
+  if(n===1){
+    content = "<h2>About You</h2><p>This is your story page.</p>";
   }
+  if(n===2){
+    content = "<h2>Father</h2><p>Story about your father.</p>";
+  }
+  if(n===3){
+    content = "<h2>Mother</h2><p>Story about your mother.</p>";
+  }
+
+  document.getElementById("pageContent").innerHTML = content;
 }
 </script>
 
