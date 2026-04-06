@@ -1,119 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>For You When I'm Gone</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Book Test</title>
 
 <style>
-
-/* ===== RESET ===== */
 body {
   margin: 0;
-  overflow: hidden;
-  font-family: Georgia, serif;
+  background: #ffffff; /* plain white */
 }
 
-/* ===== MARBLE BACKGROUND (SOFT BLUE) ===== */
-body {
-  background:
-    radial-gradient(circle at 20% 30%, rgba(255,255,255,0.25), transparent 40%),
-    radial-gradient(circle at 80% 70%, rgba(255,255,255,0.15), transparent 40%),
-    linear-gradient(135deg, #7fb3d5, #2e86c1);
-}
-
-/* ===== CLOSED BOOK AREA ===== */
+/* CONTAINER */
 #closedStage {
   width: 100vw;
   height: 100vh;
   display: flex;
-  justify-content: flex-end;   /* RIGHT SIDE */
+  justify-content: flex-end; /* RIGHT SIDE */
   align-items: center;
-  padding-right: 2%;
+  padding-right: 5%;
 }
 
-/* ===== BOOK IMAGE ===== */
+/* BOOK */
 .book {
-  width: 50vw;        /* BIG SIZE */
-  max-width: none;    /* NO LIMIT */
+  width: 60vw;   /* BIGGER so we can dial it in */
   height: auto;
-  cursor: pointer;
-  transition: transform 0.25s ease;
 }
-
-.book:hover {
-  transform: scale(1.03);
-}
-
-/* ===== OPEN BOOK LAYOUT ===== */
-.openContainer {
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.bookOpen {
-  width: 90vw;
-  height: 80vh;
-  display: flex;
-  box-shadow: 0 25px 60px rgba(0,0,0,0.35);
-}
-
-/* LEFT SIDE (BACK OF PAGES) */
-.leftPage {
-  width: 50%;
-  background: #5a3e2b;
-}
-
-/* RIGHT SIDE (CONTENT PAGE) */
-.rightPage {
-  width: 50%;
-  background: #f4f1ea;
-  padding: 40px;
-  color: #3e2a1f;
-}
-
-button {
-  margin-top: 30px;
-  padding: 10px 20px;
-  font-size: 16px;
-}
-
 </style>
 </head>
 
 <body>
 
-<!-- CLOSED BOOK -->
 <div id="closedStage">
-  <img src="book.jpg" class="book" onclick="openBook()" />
+  <img src="book.jpg" class="book">
 </div>
-
-<script>
-function openBook() {
-  document.body.innerHTML = `
-    <div class="openContainer">
-      <div class="bookOpen">
-
-        <div class="leftPage"></div>
-
-        <div class="rightPage">
-          <h1>Book Index</h1>
-
-          <p>Chapter 1 — About You</p>
-          <p>Chapter 2 — Father</p>
-          <p>Chapter 3 — Mother</p>
-
-          <button onclick="location.reload()">Close Book</button>
-        </div>
-
-      </div>
-    </div>
-  `;
-}
-</script>
 
 </body>
 </html>
