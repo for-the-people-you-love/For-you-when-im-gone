@@ -78,7 +78,6 @@
     display: none;
   }
 
-  /* Exact style placement more like reference photo */
   .cover-horizontal-line-top,
   .cover-horizontal-line-bottom {
     position: absolute;
@@ -183,7 +182,8 @@
 
   .open-wrap {
     min-height: 100vh;
-    justify-content: flex-start;
+    display: flex;
+    justify-content: center;
     align-items: center;
     padding: 16px;
     box-sizing: border-box;
@@ -200,35 +200,50 @@
     box-shadow: 0 24px 60px rgba(0,0,0,0.45);
   }
 
-  .left-cover-back {
+  /* NEW LEFT PAGE */
+  .left-page {
     background:
-      linear-gradient(135deg, rgba(255,255,255,0.05), transparent 30%),
-      linear-gradient(135deg, #5e3b1f, #3a2312);
-    border: 4px solid #c7964b;
+      linear-gradient(to right, #f0dfc3 0%, #fbf4e8 10%, #fffaf2 100%);
+    color: #4a2d1a;
+    border: 4px solid #d6bb90;
     border-right: none;
     border-radius: 22px 0 0 22px;
+    box-sizing: border-box;
     position: relative;
-    box-shadow:
-      inset 0 0 30px rgba(0,0,0,0.22),
-      inset -10px 0 20px rgba(255,255,255,0.04);
+    overflow: hidden;
   }
 
-  .left-cover-back::before {
-    content: "";
-    position: absolute;
-    inset: 14px;
-    border: 1px solid rgba(240,209,138,0.45);
-    border-radius: 10px;
-  }
-
-  .left-cover-back::after {
+  .left-page::before {
     content: "";
     position: absolute;
     right: 0;
     top: 0;
-    width: 16px;
+    width: 26px;
     height: 100%;
-    background: linear-gradient(to left, rgba(0,0,0,0.25), rgba(255,255,255,0.04));
+    background: linear-gradient(to left, rgba(0,0,0,0.08), rgba(255,255,255,0.35));
+    pointer-events: none;
+  }
+
+  .left-page-content {
+    padding: 24px 18px 18px 22px;
+    height: 100%;
+    box-sizing: border-box;
+    position: relative;
+    z-index: 1;
+  }
+
+  .left-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    color: #7b4e2f;
+    font-size: 16px;
+    line-height: 1.2;
+  }
+
+  .left-control {
+    cursor: pointer;
+    user-select: none;
   }
 
   .spine {
@@ -250,7 +265,7 @@
     position: relative;
     overflow: hidden;
     display: grid;
-    grid-template-columns: 1fr 64px;
+    grid-template-columns: 1fr;
   }
 
   .right-page::before {
@@ -270,35 +285,6 @@
     box-sizing: border-box;
     overflow: hidden;
   }
-
-  .page-rail {
-    border-left: 1px solid rgba(199,150,75,0.35);
-    position: relative;
-    padding-top: 56px;
-    box-sizing: border-box;
-    background: rgba(255,250,242,0.35);
-  }
-
-  .edge-close-book,
-  .edge-add-page,
-  .edge-flip-back,
-  .edge-index,
-  .edge-next-chapter {
-    text-transform: uppercase;
-    text-align: center;
-    letter-spacing: 1px;
-    font-size: 10px;
-    line-height: 1.02;
-    cursor: pointer;
-    user-select: none;
-    width: 100%;
-  }
-
-  .edge-close-book { color: #b00000; margin-bottom: 16px; }
-  .edge-add-page { color: #0c8a2a; margin-bottom: 16px; }
-  .edge-flip-back { color: #145cc7; margin-bottom: 16px; }
-  .edge-index { color: #7b4e2f; margin-bottom: 16px; }
-  .edge-next-chapter { color: #c7964b; }
 
   .page-panel {
     position: relative;
@@ -685,7 +671,19 @@
 
   <div id="openedStage" class="open-wrap">
     <div class="open-book">
-      <div class="left-cover-back"></div>
+
+      <div class="left-page">
+        <div class="left-page-content">
+          <div class="left-controls">
+            <div class="left-control" onclick="closeBook()">Close Book</div>
+            <div id="leftAddPage" class="left-control" style="display:none;">+ New Page</div>
+            <div id="leftFlipBack" class="left-control" style="display:none;">Flip Back</div>
+            <div class="left-control" onclick="goToIndex()">Index</div>
+            <div class="left-control" onclick="goToNextChapter()">Next Chapter</div>
+          </div>
+        </div>
+      </div>
+
       <div class="spine"></div>
 
       <div class="right-page">
@@ -1045,28 +1043,6 @@
           </div>
 
         </div>
-
-        <div class="page-rail">
-          <div class="edge-close-book" onclick="closeBook()">
-            C<br>L<br>O<br>S<br>E<br><br>B<br>O<br>O<br>K
-          </div>
-
-          <div id="edgeAddPage" class="edge-add-page" style="display:none;">
-            +<br>N<br>E<br>W<br><br>P<br>A<br>G<br>E
-          </div>
-
-          <div id="edgeFlipBack" class="edge-flip-back" style="display:none;">
-            F<br>L<br>I<br>P<br><br>B<br>A<br>C<br>K
-          </div>
-
-          <div class="edge-index" onclick="goToIndex()">
-            I<br>N<br>D<br>E<br>X
-          </div>
-
-          <div class="edge-next-chapter" onclick="goToNextChapter()">
-            N<br>E<br>X<br>T<br><br>C<br>H<br>A<br>P<br>T<br>E<br>R
-          </div>
-        </div>
       </div>
     </div>
   </div>
@@ -1161,29 +1137,29 @@
       const current = document.getElementById("page" + pageNumber);
       if (current) current.style.display = "block";
 
-      const edgeAddPage = document.getElementById("edgeAddPage");
+      const addControl = document.getElementById("leftAddPage");
       const addAction = getAddAction(pageNumber);
 
       if (addAction) {
-        edgeAddPage.style.display = "block";
-        edgeAddPage.onclick = addAction;
+        addControl.style.display = "block";
+        addControl.onclick = addAction;
       } else {
-        edgeAddPage.style.display = "none";
-        edgeAddPage.onclick = null;
+        addControl.style.display = "none";
+        addControl.onclick = null;
       }
 
-      const edgeFlipBack = document.getElementById("edgeFlipBack");
+      const flipBackControl = document.getElementById("leftFlipBack");
       const parentPage = current ? current.getAttribute("data-parent-page") : "";
 
       if (parentPage !== "") {
-        edgeFlipBack.style.display = "block";
-        edgeFlipBack.onclick = function () {
+        flipBackControl.style.display = "block";
+        flipBackControl.onclick = function () {
           currentPage = parseInt(parentPage, 10);
           showPage(currentPage);
         };
       } else {
-        edgeFlipBack.style.display = "none";
-        edgeFlipBack.onclick = null;
+        flipBackControl.style.display = "none";
+        flipBackControl.onclick = null;
       }
     }
 
