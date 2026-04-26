@@ -31,17 +31,16 @@ body {
   cursor: pointer;
 }
 
-/* OPEN BOOK */
+/* OPEN BOOK (FIXED) */
 #openBook {
-  display: none;
+  display: none; /* IMPORTANT — do not add display:flex here */
   width: 95vw;
   max-width: 800px;
-  height: 80vh; /* FIXED HEIGHT */
+  height: 90vh;
   background: #f4eadb;
   border-radius: 20px;
   overflow: hidden;
   box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-  display: flex;
 }
 
 /* LEFT PAGE */
@@ -51,19 +50,16 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: flex-end;
-  gap: 18px;
+  align-items: center;
+  gap: 20px;
   border-right: 4px solid #c7964b;
-  padding-right: 18px;
-  box-sizing: border-box;
 }
 
 /* RIGHT PAGE */
 .rightPage {
   width: 60%;
-  padding: 16px;
+  padding: 20px;
   overflow: hidden;
-  box-sizing: border-box;
 }
 
 /* CONTROLS */
@@ -72,8 +68,6 @@ body {
   letter-spacing: 1px;
   cursor: pointer;
   text-transform: uppercase;
-  font-size: 17px;
-  text-align: right;
 }
 
 .red { color: #c0392b; }
@@ -83,35 +77,17 @@ body {
 .black { color: #000; }
 
 /* INDEX */
-.topBar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 6px;
-  color: #3b2416;
-  font-size: 14px;
-}
-
-.arrow {
-  font-size: 22px;
-  cursor: pointer;
-}
-
 .chapter {
   background: #fff;
-  padding: 8px 10px;
-  margin-bottom: 8px;
+  padding: 10px;
+  margin-bottom: 10px;
   border-radius: 10px;
   cursor: pointer;
   font-size: 14px;
-  line-height: 1.1;
 }
 
 h1 {
-  margin: 0 0 10px 0;
-  font-size: 30px;
-  line-height: 0.95;
-  color: #3b2416;
+  margin-top: 0;
 }
 </style>
 </head>
@@ -131,70 +107,51 @@ h1 {
 
   <!-- LEFT PAGE -->
   <div class="leftPage">
-    <div class="control red" onclick="showIndex(1)">INDEX</div>
-    <div class="control blue">NEXT CHAPTER</div>
+    <div class="control red" onclick="goToIndex()">INDEX</div>
+    <div class="control blue" onclick="goToNextChapter()">NEXT CHAPTER</div>
     <div class="control green">+ NEW PAGE</div>
-    <div class="control yellow">FLIP BACK</div>
+    <div class="control yellow" onclick="flipBack()">FLIP BACK</div>
     <div class="control black" onclick="closeBook()">CLOSE BOOK</div>
   </div>
 
   <!-- RIGHT PAGE -->
-  <div class="rightPage">
+  <div class="rightPage" id="pageContainer">
 
-    <!-- INDEX PAGE 1 -->
-    <div id="indexPage1">
-      <div class="topBar">
-        <div>Page 1 of 2</div>
-        <div class="arrow" onclick="showIndex(2)">➡️</div>
-      </div>
+    <!-- INDEX -->
+    <div id="page0">
+      <h1>Book Index</h1>
 
-      <h1>Book<br>Index</h1>
-
-      <div class="chapter">Chapter 1 — About You</div>
-      <div class="chapter">Chapter 2 — Father</div>
-      <div class="chapter">Chapter 3 — Mother</div>
-      <div class="chapter">Chapter 4 — Brothers & Sisters</div>
-      <div class="chapter">Chapter 5 — You</div>
-      <div class="chapter">Chapter 6 — Jobs</div>
-      <div class="chapter">Chapter 7 — Marriage</div>
-    </div>
-
-    <!-- INDEX PAGE 2 -->
-    <div id="indexPage2" style="display:none;">
-      <div class="topBar">
-        <div class="arrow" onclick="showIndex(1)">⬅️</div>
-        <div>Page 2 of 2</div>
-      </div>
-
-      <h1>Book<br>Index</h1>
-
-      <div class="chapter">Chapter 8 — When I Started My Family</div>
-      <div class="chapter">Chapter 9 — Family Stories</div>
-      <div class="chapter">Chapter 10 — Friends</div>
-      <div class="chapter">Chapter 11 — Diary</div>
-      <div class="chapter">Chapter 12 — Contacts and Emails</div>
-      <div class="chapter">Chapter 13 — Important Information</div>
-      <div class="chapter">Chapter 14 — Angel Message</div>
+      <div class="chapter" onclick="goToChapter(1)">Chapter 1 — About You</div>
+      <div class="chapter" onclick="goToChapter(2)">Chapter 2 — Father</div>
+      <div class="chapter" onclick="goToChapter(3)">Chapter 3 — Mother</div>
+      <div class="chapter" onclick="goToChapter(4)">Chapter 4 — Brothers & Sisters</div>
+      <div class="chapter" onclick="goToChapter(5)">Chapter 5 — You</div>
+      <div class="chapter" onclick="goToChapter(6)">Chapter 6 — Jobs</div>
+      <div class="chapter" onclick="goToChapter(7)">Chapter 7 — Marriage</div>
+      <div class="chapter" onclick="goToChapter(8)">Chapter 8 — Family</div>
+      <div class="chapter" onclick="goToChapter(9)">Chapter 9 — Family Stories</div>
+      <div class="chapter" onclick="goToChapter(10)">Chapter 10 — Friends</div>
+      <div class="chapter" onclick="goToChapter(11)">Chapter 11 — Diary</div>
+      <div class="chapter" onclick="goToChapter(12)">Chapter 12 — Contacts</div>
+      <div class="chapter" onclick="goToChapter(13)">Chapter 13 — Important Info</div>
+      <div class="chapter" onclick="goToChapter(14)">Chapter 14 — Angel Message</div>
     </div>
 
   </div>
 </div>
 
 <script>
+let currentPage = 0;
+let lastPage = 0;
+
 function openBook() {
   document.getElementById("closedBook").style.display = "none";
   document.getElementById("openBook").style.display = "flex";
-  showIndex(1);
 }
 
 function closeBook() {
   document.getElementById("openBook").style.display = "none";
   document.getElementById("closedBook").style.display = "flex";
-}
-
-function showIndex(page) {
-  document.getElementById("indexPage1").style.display = page === 1 ? "block" : "none";
-  document.getElementById("indexPage2").style.display = page === 2 ? "block" : "none";
 }
 </script>
 
