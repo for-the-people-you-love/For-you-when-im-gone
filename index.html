@@ -31,20 +31,19 @@ body {
   cursor: pointer;
 }
 
-/* OPEN BOOK */
+/* OPEN BOOK (FIXED) */
 #openBook {
-  display: none;
+  display: none; /* IMPORTANT — do not add display:flex here */
   width: 95vw;
   max-width: 800px;
   height: 90vh;
   background: #f4eadb;
   border-radius: 20px;
-  display: flex;
   overflow: hidden;
   box-shadow: 0 20px 50px rgba(0,0,0,0.5);
 }
 
-/* LEFT PAGE (CONTROLS) */
+/* LEFT PAGE */
 .leftPage {
   width: 40%;
   background: #efe4d1;
@@ -56,18 +55,19 @@ body {
   border-right: 4px solid #c7964b;
 }
 
-/* RIGHT PAGE (CONTENT) */
+/* RIGHT PAGE */
 .rightPage {
   width: 60%;
   padding: 20px;
   overflow: hidden;
 }
 
-/* BUTTONS */
+/* CONTROLS */
 .control {
   font-weight: bold;
   letter-spacing: 1px;
   cursor: pointer;
+  text-transform: uppercase;
 }
 
 .red { color: #c0392b; }
@@ -117,7 +117,7 @@ h1 {
   <!-- RIGHT PAGE -->
   <div class="rightPage" id="pageContainer">
 
-    <!-- INDEX PAGE -->
+    <!-- INDEX -->
     <div id="page0">
       <h1>Book Index</h1>
 
