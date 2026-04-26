@@ -12,11 +12,10 @@ body {
   background:
     radial-gradient(circle at top, rgba(255,220,170,0.08), transparent 30%),
     linear-gradient(to bottom, #2b1d14, #120d09);
-  min-height: 100vh;
-  color: white;
+  height: 100vh;
 }
 
-/* ---------- STAGE ---------- */
+/* CENTER BOOK */
 .open-wrap {
   height: 100vh;
   display: flex;
@@ -24,7 +23,7 @@ body {
   align-items: center;
 }
 
-/* ---------- BOOK ---------- */
+/* BOOK */
 .open-book {
   width: 920px;
   height: 640px;
@@ -33,7 +32,7 @@ body {
   box-shadow: 0 24px 60px rgba(0,0,0,0.45);
 }
 
-/* ---------- LEFT PAGE ---------- */
+/* LEFT PAGE */
 .left-page {
   background:
     linear-gradient(to right, #f0dfc3 0%, #fbf4e8 10%, #fffaf2 100%);
@@ -46,61 +45,70 @@ body {
 /* CONTROLS */
 .left-controls {
   position: absolute;
-  right: 18px;
+  right: 10px;
   top: 50%;
   transform: translateY(-50%);
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 14px;
   text-align: right;
 }
 
-.left-controls div {
+.control {
   font-size: 14px;
-  color: #7b4e2f;
+  font-weight: bold;
+  letter-spacing: 1px;
   cursor: pointer;
+  transition: 0.2s;
 }
 
-.left-controls div:hover {
-  color: #c7964b;
+.control:hover {
+  transform: translateX(-4px);
 }
 
-/* ---------- SPINE ---------- */
+/* COLORS */
+.index { color: #e53935; }
+.next { color: #1e88e5; }
+.add { color: #2e7d32; }
+.back { color: #f4b400; }
+.close { color: #111; }
+
+/* SPINE */
 .spine {
   background:
     linear-gradient(to right, #6f5130, #d8c29c 40%, #6f5130 70%, #4a341f);
 }
 
-/* ---------- RIGHT PAGE ---------- */
+/* RIGHT PAGE */
 .right-page {
   background:
     linear-gradient(to right, #f0dfc3 0%, #fbf4e8 10%, #fffaf2 100%);
-  color: #4a2d1a;
   border: 4px solid #d6bb90;
   border-left: none;
   border-radius: 0 22px 22px 0;
-  padding: 20px;
+  padding: 30px 20px;
   overflow: hidden;
 }
 
 .page-panel { display: none; }
 
-/* ---------- TEXT ---------- */
+/* TEXT */
 h1 {
-  margin: 0 0 10px 0;
-  font-size: 26px;
+  margin: 0 0 16px 0;
+  font-size: 28px;
+  color: #4a2d1a;
 }
 
 .index-list {
   display: grid;
-  gap: 8px;
+  gap: 10px;
 }
 
 .index-link {
-  background: rgba(255,255,255,0.75);
+  background: rgba(255,255,255,0.8);
   border: 1px solid rgba(199,150,75,0.45);
-  border-radius: 8px;
-  padding: 8px;
+  border-radius: 10px;
+  padding: 10px;
   cursor: pointer;
 }
 </style>
@@ -114,11 +122,11 @@ h1 {
     <!-- LEFT PAGE -->
     <div class="left-page">
       <div class="left-controls">
-        <div onclick="closeBook()">Close Book</div>
-        <div onclick="addPage()">+ New Page</div>
-        <div onclick="flipBack()">Flip Back</div>
-        <div onclick="goToIndex()">Index</div>
-        <div onclick="nextChapter()">Next Chapter</div>
+        <div class="control index" onclick="goToIndex()">INDEX</div>
+        <div class="control next" onclick="nextChapter()">NEXT CHAPTER</div>
+        <div class="control add" onclick="alert('Add Page')">+ NEW PAGE</div>
+        <div class="control back" onclick="flipBack()">FLIP BACK</div>
+        <div class="control close" onclick="alert('Close Book')">CLOSE BOOK</div>
       </div>
     </div>
 
@@ -135,24 +143,35 @@ h1 {
           <div class="index-link" onclick="goToPage(1)">Chapter 1 — About You</div>
           <div class="index-link" onclick="goToPage(2)">Chapter 2 — Father</div>
           <div class="index-link" onclick="goToPage(3)">Chapter 3 — Mother</div>
+          <div class="index-link" onclick="goToPage(4)">Chapter 4 — Brothers & Sisters</div>
+          <div class="index-link" onclick="goToPage(5)">Chapter 5 — You</div>
+          <div class="index-link" onclick="goToPage(6)">Chapter 6 — Jobs</div>
+          <div class="index-link" onclick="goToPage(7)">Chapter 7 — Marriage</div>
+          <div class="index-link" onclick="goToPage(8)">Chapter 8 — When I Started My Family</div>
+          <div class="index-link" onclick="goToPage(9)">Chapter 9 — Family Stories</div>
+          <div class="index-link" onclick="goToPage(10)">Chapter 10 — Friends</div>
+          <div class="index-link" onclick="goToPage(11)">Chapter 11 — Diary</div>
+          <div class="index-link" onclick="goToPage(12)">Chapter 12 — Contacts and Emails</div>
+          <div class="index-link" onclick="goToPage(13)">Chapter 13 — Important Information</div>
+          <div class="index-link" onclick="goToPage(14)">Chapter 14 — Angel Message</div>
         </div>
       </div>
 
-      <!-- SAMPLE PAGE -->
-      <div id="page1" class="page-panel">
-        <h1>About You</h1>
-        <p>Your story goes here.</p>
-      </div>
-
-      <div id="page2" class="page-panel">
-        <h1>Father</h1>
-        <p>Father story.</p>
-      </div>
-
-      <div id="page3" class="page-panel">
-        <h1>Mother</h1>
-        <p>Mother story.</p>
-      </div>
+      <!-- PAGES -->
+      <div id="page1" class="page-panel"><h1>About You</h1></div>
+      <div id="page2" class="page-panel"><h1>Father</h1></div>
+      <div id="page3" class="page-panel"><h1>Mother</h1></div>
+      <div id="page4" class="page-panel"><h1>Brothers & Sisters</h1></div>
+      <div id="page5" class="page-panel"><h1>You</h1></div>
+      <div id="page6" class="page-panel"><h1>Jobs</h1></div>
+      <div id="page7" class="page-panel"><h1>Marriage</h1></div>
+      <div id="page8" class="page-panel"><h1>When I Started My Family</h1></div>
+      <div id="page9" class="page-panel"><h1>Family Stories</h1></div>
+      <div id="page10" class="page-panel"><h1>Friends</h1></div>
+      <div id="page11" class="page-panel"><h1>Diary</h1></div>
+      <div id="page12" class="page-panel"><h1>Contacts and Emails</h1></div>
+      <div id="page13" class="page-panel"><h1>Important Information</h1></div>
+      <div id="page14" class="page-panel"><h1>Angel Message</h1></div>
 
     </div>
   </div>
@@ -172,21 +191,11 @@ function goToIndex() { showPage(0); }
 
 function nextChapter() {
   currentPage++;
-  if (document.getElementById("page" + currentPage)) {
-    showPage(currentPage);
-  }
+  if (document.getElementById("page" + currentPage)) showPage(currentPage);
 }
 
 function flipBack() {
   if (currentPage > 0) showPage(currentPage - 1);
-}
-
-function addPage() {
-  alert("Add page function (we hook this back next)");
-}
-
-function closeBook() {
-  alert("Close book (we reconnect this next)");
 }
 
 showPage(0);
